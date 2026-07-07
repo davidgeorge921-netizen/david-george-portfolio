@@ -51,27 +51,7 @@ export default async function ProjectPage({ params }: Props) {
           <p className="mt-7 max-w-3xl text-lg leading-8 text-white/76">{project.summary}</p>
         </div>
       </section>
-      <section className="px-5 py-20 md:px-10 md:py-28">
-        <div className="mx-auto grid max-w-[1800px] gap-12 md:grid-cols-[0.8fr_1.2fr]">
-          <div className="space-y-6 text-sm uppercase tracking-wideTesla text-white/45 light:text-black/45">
-            <div>Year / {project.year}</div>
-            <div>Location / {project.location}</div>
-            <div>Role / {project.role}</div>
-          </div>
-          <div>
-            <p className="mb-8 max-w-3xl text-xl leading-8 text-white/68 light:text-black/68">{project.context}</p>
-            <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 light:border-black/10 light:bg-black/10 sm:grid-cols-3">
-              {project.stats.map((stat) => (
-                <div key={stat.label} className="bg-ink p-6 light:bg-bone">
-                  <div className="text-3xl font-semibold">{stat.value}</div>
-                  <div className="mt-3 text-[11px] uppercase tracking-wideTesla text-white/45 light:text-black/45">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="space-y-5 px-5 pb-20 md:px-10 md:pb-28">
+      <section className="space-y-5 px-5 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-[1800px] space-y-5">
           {project.images.map((image, imageIndex) => (
             <figure key={image.src} className={imageIndex % 3 === 1 ? "ml-auto max-w-5xl" : "max-w-[1800px]"}>
