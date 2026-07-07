@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { HeadshotCarousel } from "@/components/headshot-carousel";
 import { Reveal } from "@/components/reveal";
 import { VideoEmbed } from "@/components/video-embed";
 
@@ -18,40 +18,28 @@ const headshots = [
 export default function NonAutoPortfolio() {
   return (
     <section className="min-h-screen bg-ink px-5 pb-24 pt-28 text-bone light:bg-bone light:text-ink md:px-10 md:pt-32">
-      <div className="mx-auto grid max-w-[1800px] gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-        {/* Left: CEO / Business Portraits — vertical tab */}
-        <Reveal>
-          <p className="text-[11px] font-semibold uppercase tracking-wideTesla text-white/45 light:text-black/45">
-            CEO / Business Portraits
-          </p>
-          <div className="mt-4 flex flex-col gap-4 lg:max-h-[78vh] lg:overflow-y-auto lg:pr-2">
-            {headshots.map((item) => (
-              <div key={item.src} className="relative aspect-[4/5] w-full overflow-hidden bg-black">
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  sizes="(min-width: 1024px) 28vw, 100vw"
-                  quality={95}
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        {/* Right: BTS video */}
-        <Reveal delay={0.08} className="lg:sticky lg:top-28">
-          <p className="text-[11px] font-semibold uppercase tracking-wideTesla text-white/45 light:text-black/45">
+      <div className="mx-auto grid max-w-[1800px] gap-10 lg:grid-cols-[1.5fr_0.6fr] lg:items-stretch">
+        {/* Left: BTS video */}
+        <Reveal className="flex flex-col">
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-wideTesla text-white/45 light:text-black/45">
             BTS of Recent Work
           </p>
-          <div className="mt-4">
-            <VideoEmbed
-              poster="/images/non-auto-video-poster.jpg"
-              embedUrl="https://www.youtube.com/embed/j00PxoZ9w0U?autoplay=1&rel=0&modestbranding=1"
-              title="BTS of Recent Work"
-            />
-          </div>
+          <VideoEmbed
+            poster="/images/non-auto-video-poster.jpg"
+            embedUrl="https://www.youtube.com/embed/j00PxoZ9w0U?autoplay=1&rel=0&modestbranding=1"
+            title="BTS of Recent Work"
+          />
+        </Reveal>
+
+        {/* Right: CEO / Business Portraits — vertical tab carousel */}
+        <Reveal delay={0.08} className="flex flex-col">
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-wideTesla text-white/45 light:text-black/45">
+            CEO / Business Portraits
+          </p>
+          <HeadshotCarousel
+            images={headshots}
+            className="aspect-[4/5] w-full lg:aspect-auto lg:min-h-0 lg:flex-1"
+          />
         </Reveal>
       </div>
     </section>
