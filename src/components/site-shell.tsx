@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import Lenis from "lenis";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -36,6 +37,7 @@ function backdropIsLight(): boolean {
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [navDark, setNavDark] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
 
@@ -95,7 +97,26 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link href="/non-auto-portfolio">Non-Auto Portfolio</Link>
             <a href="/#about">About Me / Contact</a>
           </div>
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+            className="md:hidden"
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </nav>
+        {menuOpen && (
+          <div className="border-t border-white/10 bg-ink/95 text-white backdrop-blur md:hidden">
+            <div className="mx-auto flex max-w-[1800px] flex-col px-5 text-xs font-medium uppercase tracking-wideTesla">
+              <a href="/#work" onClick={() => setMenuOpen(false)} className="border-b border-white/10 py-4">Work</a>
+              <a href="/#gallery" onClick={() => setMenuOpen(false)} className="border-b border-white/10 py-4">Gallery</a>
+              <Link href="/non-auto-portfolio" onClick={() => setMenuOpen(false)} className="border-b border-white/10 py-4">Non-Auto Portfolio</Link>
+              <a href="/#about" onClick={() => setMenuOpen(false)} className="py-4">About Me / Contact</a>
+            </div>
+          </div>
+        )}
       </header>
       <AnimatePresence mode="wait">
         <motion.main
