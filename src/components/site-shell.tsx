@@ -87,7 +87,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           }`}
         >
           <Link href="/" aria-label="Home">
-            David George 2
+            David George
           </Link>
           <div className="hidden items-center gap-8 md:flex">
             <a href="/#work">Work</a>
