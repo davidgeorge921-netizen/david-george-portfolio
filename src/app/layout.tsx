@@ -4,32 +4,36 @@ import "./globals.css";
 import { SiteShell } from "@/components/site-shell";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://automotive-portfolio.local"),
+  metadataBase: new URL("https://davidgeorgephotography.com"),
   title: {
-    default: "David George | Automotive Photographer for Tesla EMEA Berlin",
+    default: "David George | Automotive & Commercial Photographer",
     template: "%s | David George"
   },
   description:
-    "Automotive photography portfolio for Tesla Photographer EMEA Berlin, showing campaign, editorial, social, BMW India EV campaign film support, BTS video, CEO headshots, fashion editorial, retouching, RAW workflow, asset management, and production-house experience.",
+    "Automotive, commercial, and campaign photography — dynamic vehicle capture, reflective-surface product detail, retouching, and RAW colour workflows, from creative brief to final delivery.",
   keywords: [
     "automotive photographer",
-    "Tesla Berlin photographer",
+    "commercial photographer",
     "motorsport photography",
-    "commercial automotive photography",
+    "product photography",
     "Aston Martin photography",
-    "Tesla Photographer EMEA Berlin",
     "automotive retouching",
-    "BMW India EV campaign film",
-    "CEO headshots",
-    "fashion editorial photography",
-    "BTS video",
     "Capture One Lightroom Photoshop"
   ],
   openGraph: {
-    title: "David George | Automotive Photographer for Tesla EMEA Berlin",
-    description: "Campaign imagery, dynamic automotive capture, BMW India EV campaign film support, BTS video, CEO headshots, fashion editorial, retouching, RAW workflow, and production-house experience.",
+    title: "David George | Automotive & Commercial Photographer",
+    description:
+      "Automotive, commercial, and campaign photography — dynamic vehicle capture, product detail, retouching, and RAW colour workflows.",
+    url: "https://davidgeorgephotography.com",
+    siteName: "David George Photography",
     images: ["/images/aston-martin/IMG_3268.jpg"],
     type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "David George | Automotive & Commercial Photographer",
+    description: "Automotive, commercial, and campaign photography.",
+    images: ["/images/aston-martin/IMG_3268.jpg"]
   }
 };
 
