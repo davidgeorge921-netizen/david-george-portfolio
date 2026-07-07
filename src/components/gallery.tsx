@@ -6,37 +6,29 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 
-const filters = ["All", "Motion", "Design", "Interior", "Event", "Lifestyle", "Desert"] as const;
+const filters = ["Motion", "Design", "Interior"] as const;
+type Filter = "All" | (typeof filters)[number];
 
 export function Gallery({ images }: { images: PortfolioImage[] }) {
-  const [filter, setFilter] = useState<(typeof filters)[number]>("All");
-  const [visible, setVisible] = useState(12);
+  const [filter, setFilter] = useState<Filter>("All");
   const [active, setActive] = useState<number | null>(null);
 
   const filtered = useMemo(
     () => images.filter((image) => filter === "All" || image.category === filter),
     [filter, images]
   );
-  const shown = filtered.slice(0, visible);
-
-  useEffect(() => {
-    setVisible(12);
-  }, [filter]);
 
   return (
     <section id="gallery" className="bg-bone px-5 py-24 text-ink light:bg-white md:px-10 md:py-32">
       <div className="mx-auto max-w-[1800px]">
-        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wideTesla text-black/50">Gallery</p>
-            <h2 className="mt-3 max-w-3xl text-4xl font-semibold leading-none md:text-7xl">A live edit, built for speed and detail.</h2>
-          </div>
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <p className="text-[11px] font-semibold uppercase tracking-wideTesla text-black/50">Gallery</p>
           <div className="flex max-w-full gap-2 overflow-x-auto pb-2">
             {filters.map((item) => (
               <button
                 key={item}
                 type="button"
-                onClick={() => setFilter(item)}
+                onClick={() => setFilter((current) => (current === item ? "All" : item))}
                 className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wideTesla transition ${
                   filter === item ? "border-black bg-black text-white" : "border-black/15 text-black/65 hover:border-black"
                 }`}
@@ -46,25 +38,25 @@ export function Gallery({ images }: { images: PortfolioImage[] }) {
             ))}
           </div>
         </div>
-        <div className="masonry">
-          {shown.map((image, index) => (
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {filtered.map((image, index) => (
             <motion.button
               key={`${image.src}-${filter}`}
               type="button"
               data-cursor="view"
               onClick={() => setActive(index)}
-              className="group mb-4 block w-full break-inside-avoid overflow-hidden bg-black text-left"
+              className="group block w-full overflow-hidden bg-black text-left"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="relative aspect-[1.35/1] w-full overflow-hidden">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                   className="object-cover transition duration-700 ease-expo group-hover:scale-105"
                   loading="lazy"
                 />
@@ -76,19 +68,8 @@ export function Gallery({ images }: { images: PortfolioImage[] }) {
             </motion.button>
           ))}
         </div>
-        {visible < filtered.length ? (
-          <div className="mt-10 flex justify-center">
-            <button
-              type="button"
-              onClick={() => setVisible((value) => value + 9)}
-              className="rounded-full border border-black px-6 py-3 text-xs font-semibold uppercase tracking-wideTesla transition hover:bg-black hover:text-white"
-            >
-              Load More
-            </button>
-          </div>
-        ) : null}
       </div>
-      <Lightbox images={shown} active={active} setActive={setActive} />
+      <Lightbox images={filtered} active={active} setActive={setActive} />
     </section>
   );
 }
