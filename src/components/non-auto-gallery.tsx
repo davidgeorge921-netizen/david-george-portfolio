@@ -90,7 +90,7 @@ const SECTIONS: Section[] = [
         aspect: "4 / 5",
         frames: [
           { src: `${base}/exec-portrait-violet.jpg`, w: 3072, h: 3840, alt: "Tech founder headshot in a cream sweater against a violet backdrop", title: "Founder — Violet" },
-          { src: `${base}/exec-portrait-blue-blazer.jpg`, w: 3840, h: 3840, alt: "Corporate portrait of a smiling woman in a pale blue blazer, arms crossed", title: "Corporate — Grey" },
+          { src: `${base}/exec-portrait-charcoal-grey.jpg`, w: 3072, h: 3840, alt: "Studio portrait of a smiling woman with dark wavy hair in a black top against a light grey backdrop", title: "Studio — Grey" },
           { src: `${base}/exec-portrait-cream.jpg`, w: 3072, h: 3840, alt: "Executive headshot of a woman in a cream turtleneck against a warm tan backdrop", title: "Executive — Warm" }
         ]
       }
