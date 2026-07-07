@@ -3,7 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Hero, type HeroSlide } from "@/components/hero";
 import { VideoEmbed } from "@/components/video-embed";
 
 type Frame = {
@@ -29,30 +30,59 @@ type Section = {
 
 const base = "/images/non-auto";
 
-const HERO: Frame = {
-  src: `${base}/editorial-tartan-gaze.jpg`,
-  w: 2559,
-  h: 3840,
-  alt: "Fashion editorial portrait — model wrapped in tartan against deep shadow, direct gaze",
-  title: "Tartan — Editorial Study"
-};
+// Same marquee as the automotive homepage — only the photographs change.
+const HERO_SLIDES: HeroSlide[] = [
+  { src: `${base}/editorial-tartan-gaze.jpg`, alt: "Fashion editorial portrait — model wrapped in tartan, direct gaze" },
+  { src: `${base}/editorial-tartan-side.jpg`, alt: "Editorial portrait of a model draped in tartan, turned to the side in low light" },
+  { src: `${base}/editorial-tartan-motion.jpg`, alt: "Editorial beauty portrait — freckles lit by warm gel against bokeh" },
+  { src: `${base}/editorial-tartan-bloom.jpg`, alt: "Editorial portrait of a model in tartan holding green blooms under coloured light" }
+];
 
 const SECTIONS: Section[] = [
   {
-    id: "executive",
-    label: "01 — Portraiture",
-    title: "Executive & Brand Portraits",
-    blurb:
-      "Considered, confident portraits for founders, teams and brands — lit with intention, styled with restraint, shot in-studio and on location.",
+    id: "editorial",
+    label: "01 — Editorial",
+    title: "Fashion Editorial",
+    blurb: "A studio story in tartan and shadow.",
+    blocks: [
+      {
+        kind: "row",
+        cols: 2,
+        aspect: "2 / 3",
+        frames: [
+          { src: `${base}/editorial-tartan-gaze.jpg`, w: 2559, h: 3840, alt: "Fashion editorial portrait — model wrapped in tartan against deep shadow, direct gaze", title: "Tartan — Gaze" },
+          { src: `${base}/editorial-tartan-side.jpg`, w: 2559, h: 3840, alt: "Editorial portrait of a model draped in tartan, turned to the side in low light", title: "Tartan — Turn" }
+        ]
+      },
+      {
+        kind: "row",
+        cols: 2,
+        aspect: "2 / 3",
+        frames: [
+          { src: `${base}/editorial-tartan-motion.jpg`, w: 2559, h: 3840, alt: "Editorial beauty portrait of a model in satin, freckles lit by warm gel against bokeh", title: "Beauty — Colour" },
+          { src: `${base}/editorial-tartan-bloom.jpg`, w: 2559, h: 3840, alt: "Editorial portrait of a model in tartan holding green blooms under coloured light", title: "Tartan — Bloom" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "portraits",
+    label: "02 — Portraits",
+    title: "Portraits",
+    blurb: "Founders, executives and the people behind the brand.",
     blocks: [
       {
         kind: "row",
         cols: 2,
         aspect: "4 / 5",
         frames: [
-          { src: `${base}/exec-portrait-dynamic.jpg`, w: 3072, h: 3840, alt: "Studio portrait of a woman in a cream knit, playful finger-frame gesture against teal backdrop", title: "Personality — Studio" },
-          { src: `${base}/exec-portrait-cream.jpg`, w: 3072, h: 3840, alt: "Executive headshot of a woman in a cream turtleneck against a warm tan backdrop", title: "Executive — Warm Key" }
+          { src: `${base}/exec-portrait-brick.jpg`, w: 2880, h: 3840, alt: "Executive portrait of a bald man in a navy blazer against an exposed brick wall", title: "Executive — Brick" },
+          { src: `${base}/exec-portrait-charcoal-suit.jpg`, w: 3071, h: 3840, alt: "Portrait of a man in a charcoal suit adjusting his lapel on a grey backdrop", title: "Formal — Charcoal" }
         ]
+      },
+      {
+        kind: "full",
+        frame: { src: `${base}/exec-environmental-office.jpg`, w: 3840, h: 2706, alt: "Environmental brand portrait in a modern office with a moss hexagon wall", title: "On Location" }
       },
       {
         kind: "row",
@@ -60,67 +90,17 @@ const SECTIONS: Section[] = [
         aspect: "4 / 5",
         frames: [
           { src: `${base}/exec-portrait-violet.jpg`, w: 3072, h: 3840, alt: "Tech founder headshot in a cream sweater against a violet backdrop", title: "Founder — Violet" },
-          { src: `${base}/exec-portrait-blue-blazer.jpg`, w: 3840, h: 3840, alt: "Corporate portrait of a smiling woman in a pale blue blazer, arms crossed", title: "Corporate — Soft Grey" },
-          { src: `${base}/exec-portrait-smile.jpg`, w: 3072, h: 3840, alt: "Bright headshot of a woman in a pink striped sweater on a white backdrop", title: "Team — High Key" }
-        ]
-      },
-      {
-        kind: "full",
-        frame: { src: `${base}/exec-environmental-office.jpg`, w: 3840, h: 2706, alt: "Environmental brand portrait in a modern office with a moss hexagon wall", title: "On Location — Office" }
-      },
-      {
-        kind: "row",
-        cols: 2,
-        aspect: "4 / 5",
-        frames: [
-          { src: `${base}/exec-portrait-brick.jpg`, w: 2880, h: 3840, alt: "Executive portrait of a bald man in a navy blazer against an exposed brick wall", title: "Executive — Brick" },
-          { src: `${base}/exec-portrait-navy-suit.jpg`, w: 3071, h: 3840, alt: "Formal portrait of a young man in a navy suit on a grey backdrop", title: "Formal — Navy" }
-        ]
-      },
-      {
-        kind: "row",
-        cols: 3,
-        aspect: "4 / 5",
-        frames: [
-          { src: `${base}/exec-portrait-charcoal-suit.jpg`, w: 3071, h: 3840, alt: "Portrait of a man in a charcoal suit adjusting his lapel on a grey backdrop", title: "Formal — Charcoal" },
-          { src: `${base}/exec-portrait-hoodie.jpg`, w: 3071, h: 3840, alt: "Relaxed brand headshot of a woman in a navy hoodie laughing on a white backdrop", title: "Brand — Relaxed" },
-          { src: `${base}/exec-environmental-studio.jpg`, w: 2971, h: 3840, alt: "Environmental portrait of a man in a corduroy shirt against a moss hexagon wall", title: "On Location — Studio" }
-        ]
-      }
-    ]
-  },
-  {
-    id: "editorial",
-    label: "02 — Editorial",
-    title: "Fashion Editorial",
-    blurb:
-      "A studio story told in tartan and shadow — mood, texture and stillness, built frame by frame.",
-    blocks: [
-      {
-        kind: "row",
-        cols: 2,
-        aspect: "2 / 3",
-        frames: [
-          { src: `${base}/editorial-tartan-side.jpg`, w: 2559, h: 3840, alt: "Editorial portrait of a model draped in tartan, turned to the side in low light", title: "Tartan — Turn" },
-          { src: `${base}/editorial-tartan-bloom.jpg`, w: 2559, h: 3840, alt: "Editorial portrait of a model in tartan holding green blooms under coloured light", title: "Tartan — Bloom" }
-        ]
-      },
-      {
-        kind: "row",
-        cols: 2,
-        aspect: "2 / 3",
-        frames: [
-          { src: `${base}/editorial-tartan-bloom-mono.jpg`, w: 2559, h: 3840, alt: "Monochrome editorial portrait of a model in tartan holding blooms", title: "Tartan — Bloom, Mono" },
-          { src: `${base}/editorial-tartan-motion.jpg`, w: 2559, h: 3840, alt: "Editorial beauty portrait of a model in satin, freckles lit by warm gel against bokeh", title: "Editorial — Colour" }
+          { src: `${base}/exec-portrait-blue-blazer.jpg`, w: 3840, h: 3840, alt: "Corporate portrait of a smiling woman in a pale blue blazer, arms crossed", title: "Corporate — Grey" },
+          { src: `${base}/exec-portrait-cream.jpg`, w: 3072, h: 3840, alt: "Executive headshot of a woman in a cream turtleneck against a warm tan backdrop", title: "Executive — Warm" }
         ]
       }
     ]
   },
   {
     id: "creative",
-    label: "03 — Portraiture",
+    label: "03 — Studio",
     title: "Creative Portraits",
-    blurb: "Monochrome character studies where light does the talking.",
+    blurb: "Character studies, shaped by light.",
     blocks: [
       {
         kind: "feature",
@@ -148,9 +128,9 @@ const SECTIONS: Section[] = [
   },
   {
     id: "food",
-    label: "04 — Commercial",
+    label: "04 — Food & Drink",
     title: "Food & Beverage",
-    blurb: "Menu and hospitality photography for hotels and restaurants — appetite, crafted.",
+    blurb: "Hospitality work for hotels and restaurants.",
     blocks: [
       {
         kind: "row",
@@ -175,22 +155,22 @@ const SECTIONS: Section[] = [
           { src: `${base}/fb-biryani.jpg`, w: 2560, h: 3840, alt: "Mutton biryani in a clay pot with accompaniments on banana leaf", title: "Biryani" },
           { src: `${base}/fb-grapefruit-spritz.jpg`, w: 2560, h: 3840, alt: "Grapefruit spritz cocktails garnished with thyme and citrus", title: "Grapefruit Spritz" }
         ]
-      },
-      {
-        kind: "full",
-        frame: { src: `${base}/fb-caramel.jpg`, w: 3840, h: 3071, alt: "Caramel bread pudding with a sugar tuile and cream", title: "Caramel Pudding" }
       }
     ]
   },
   {
     id: "lifestyle",
-    label: "05 — Commercial",
+    label: "05 — Celebrations",
     title: "Lifestyle & Celebration",
-    blurb: "Weddings, launches and the unscripted moments in between.",
+    blurb: "Weddings and the moments around them.",
     blocks: [
       {
         kind: "full",
         frame: { src: `${base}/life-sparkler-exit.jpg`, w: 3840, h: 2560, alt: "Night-time wedding sparkler exit, couple running through a tunnel of guests", title: "Sparkler Exit" }
+      },
+      {
+        kind: "feature",
+        frame: { src: `${base}/life-field-couple.jpg`, w: 2560, h: 3840, alt: "Bride and groom laughing together in a golden mountain meadow", title: "Golden Field" }
       },
       {
         kind: "row",
@@ -198,16 +178,8 @@ const SECTIONS: Section[] = [
         aspect: "3 / 2",
         frames: [
           { src: `${base}/life-mother-child.jpg`, w: 3840, h: 2560, alt: "Mother lifting her daughter in a sunlit summer meadow", title: "Meadow — Family" },
-          { src: `${base}/life-startup-team.jpg`, w: 3840, h: 2559, alt: "Startup team laughing around a laptop in a bright studio", title: "Team — Candid" }
+          { src: `${base}/life-celebration.jpg`, w: 3840, h: 2560, alt: "Wedding party crowded together laughing on a garden bench", title: "Celebration" }
         ]
-      },
-      {
-        kind: "feature",
-        frame: { src: `${base}/life-field-couple.jpg`, w: 2560, h: 3840, alt: "Bride and groom laughing together in a golden mountain meadow", title: "Golden Field" }
-      },
-      {
-        kind: "full",
-        frame: { src: `${base}/life-celebration.jpg`, w: 3840, h: 2560, alt: "Wedding party crowded together laughing on a garden bench", title: "Celebration" }
       }
     ]
   }
@@ -218,7 +190,7 @@ function framesOf(block: Block): Frame[] {
   if (block.kind === "row") return block.frames;
   return [block.frame];
 }
-const FLAT: Frame[] = [HERO, ...SECTIONS.flatMap((s) => s.blocks.flatMap(framesOf))];
+const FLAT: Frame[] = SECTIONS.flatMap((s) => s.blocks.flatMap(framesOf));
 const INDEX = new Map(FLAT.map((f, i) => [f.src, i]));
 
 export function NonAutoGallery() {
@@ -230,69 +202,27 @@ export function NonAutoGallery() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative">
-        <button
-          type="button"
-          onClick={() => openAt(HERO.src)}
-          className="group relative block h-[82vh] min-h-[560px] w-full overflow-hidden md:h-[94vh]"
-          aria-label={`Open ${HERO.title}`}
-        >
-          <Image
-            src={HERO.src}
-            alt={HERO.alt}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[50%_28%] transition-transform duration-[1400ms] ease-expo group-hover:scale-[1.03]"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-ink/40" />
-          <div className="absolute inset-x-0 bottom-0 px-5 pb-12 md:px-10 md:pb-16">
-            <div className="mx-auto max-w-[1600px]">
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-wideTesla text-white/55">
-                Selected Work — Beyond Automotive
-              </p>
-              <h1 className="max-w-4xl text-4xl font-light leading-[1.02] tracking-tight text-bone md:text-7xl">
-                Portraiture, Editorial <span className="text-white/45">&amp;</span> Commercial
-              </h1>
-            </div>
-          </div>
-        </button>
-      </section>
-
-      {/* STANDFIRST */}
-      <section className="px-5 py-20 md:px-10 md:py-28">
-        <div className="mx-auto grid max-w-[1600px] gap-8 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
-          <p className="text-[11px] font-semibold uppercase tracking-wideTesla text-white/40">
-            David George — Commercial &amp; Editorial Photographer
-          </p>
-          <p className="max-w-2xl text-lg font-light leading-relaxed text-white/70 md:text-2xl">
-            A parallel body of work spanning executive portraiture, fashion editorial, hospitality and
-            celebration. The same obsession with light, composition and character that defines the automotive
-            frames — carried across studio and location shoots throughout Europe.
-          </p>
-        </div>
-      </section>
+      {/* HERO — same marquee as the automotive homepage */}
+      <Hero slides={HERO_SLIDES} />
 
       {SECTIONS.map((section) => (
-        <section
-          key={section.id}
-          id={section.id}
-          className="border-t border-white/[0.06] px-5 py-16 md:px-10 md:py-24"
-        >
-          <div className="mx-auto max-w-[1600px]">
-            <SectionHeader label={section.label} title={section.title} blurb={section.blurb} />
-            <div className="space-y-3 md:space-y-4">
-              {section.blocks.map((block, i) => (
-                <BlockView key={i} block={block} openAt={openAt} />
-              ))}
+        <div key={section.id}>
+          <section
+            id={section.id}
+            className="border-t border-white/[0.06] px-5 py-16 md:px-10 md:py-24"
+          >
+            <div className="mx-auto max-w-[1600px]">
+              <SectionHeader label={section.label} title={section.title} blurb={section.blurb} />
+              <div className="space-y-3 md:space-y-4">
+                {section.blocks.map((block, i) => (
+                  <BlockView key={i} block={block} openAt={openAt} />
+                ))}
+              </div>
             </div>
+          </section>
 
-            {section.id === "creative" ? (
-              <BehindTheLens />
-            ) : null}
-          </div>
-        </section>
+          {section.id === "creative" ? <BehindTheLens /> : null}
+        </div>
       ))}
 
       {/* CLOSING */}
@@ -419,25 +349,25 @@ function Reveal({ children }: { children: React.ReactNode }) {
 
 function BehindTheLens() {
   return (
-    <motion.div
-      className="mt-16 border-t border-white/[0.06] pt-16 md:mt-24 md:pt-24"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    <section
+      id="behind-the-lens"
+      className="border-t border-white/[0.06] px-5 py-16 md:px-10 md:py-24"
     >
-      <p className="mb-3 text-[11px] font-semibold uppercase tracking-wideTesla text-white/40">
-        Behind the Lens
-      </p>
-      <h2 className="mb-10 max-w-2xl text-3xl font-light tracking-tight text-bone md:text-5xl">
-        A look at how the work comes together
-      </h2>
-      <VideoEmbed
-        poster="/images/non-auto-video-poster.jpg"
-        embedUrl="https://www.youtube.com/embed/j00PxoZ9w0U?autoplay=1&rel=0&modestbranding=1"
-        title="Behind the scenes of recent work"
-      />
-    </motion.div>
+      <div className="mx-auto max-w-[1600px]">
+        <SectionHeader
+          label="Behind the Lens"
+          title="On Set"
+          blurb="How the work comes together."
+        />
+        <Reveal>
+          <VideoEmbed
+            poster="/images/non-auto-video-poster.jpg"
+            embedUrl="https://www.youtube.com/embed/j00PxoZ9w0U?autoplay=1&rel=0&modestbranding=1"
+            title="Behind the scenes of recent work"
+          />
+        </Reveal>
+      </div>
+    </section>
   );
 }
 
