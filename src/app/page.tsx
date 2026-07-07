@@ -41,7 +41,7 @@ export default function Home() {
           <Reveal delay={0.08}>
             <VideoEmbed
               poster="/images/bmw-film-poster.jpg"
-              embedUrl="https://www.youtube.com/embed/hoot8A6EnFY?autoplay=1&start=76&rel=0&modestbranding=1"
+              embedUrl="https://www.youtube.com/embed/hoot8A6EnFY?autoplay=1&start=1&rel=0&modestbranding=1"
               title="BMW India EV campaign film"
             />
           </Reveal>

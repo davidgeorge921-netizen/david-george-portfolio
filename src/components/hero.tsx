@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const slides = [
   { src: "/images/aston-martin/IMG_3268.jpg", alt: "Black Aston Martin rolling through a mountain road" },
@@ -11,12 +12,25 @@ const slides = [
 ];
 
 export function Hero() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  // Drop the first slide on mobile.
+  const activeSlides = isMobile ? slides.slice(1) : slides;
   // Duplicate the set so the marquee can loop seamlessly (translate -50% == one full set).
-  const loop = [...slides, ...slides];
+  const loop = [...activeSlides, ...activeSlides];
 
   return (
     <section className="relative h-[100svh] overflow-hidden bg-black">
       <motion.div
+        key={isMobile ? "mobile" : "desktop"}
         className="flex h-full w-max"
         animate={{ x: ["0%", "-50%"] }}
         transition={{ duration: 34, ease: "linear", repeat: Infinity }}
