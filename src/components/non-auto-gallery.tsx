@@ -82,7 +82,7 @@ const SECTIONS: Section[] = [
       },
       {
         kind: "full",
-        frame: { src: `${base}/exec-environmental-office.jpg`, w: 3840, h: 2706, alt: "Environmental brand portrait in a modern office with a moss hexagon wall", title: "On Location" }
+        frame: { src: `${base}/exec-architect-bw.jpg`, w: 3840, h: 2560, alt: "Black and white portrait of a smiling woman with long dark hair against a dark backdrop", title: "Architect" }
       },
       {
         kind: "row",
