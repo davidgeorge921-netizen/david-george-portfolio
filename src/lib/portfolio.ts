@@ -199,7 +199,9 @@ export const projects: Project[] = [
   }
 ];
 
-export const galleryImages = projects.flatMap((project) => project.images);
+// Gallery shows the curated Aston Martin DB12 set only (excludes the silver
+// studio display shot). Other projects keep their images for their detail pages.
+export const galleryImages = aston.filter((image) => !image.src.includes("IMG_3257.jpg"));
 
 export const featuredProjects = projects.slice(0, 4);
 

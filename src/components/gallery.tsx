@@ -38,28 +38,29 @@ export function Gallery({ images }: { images: PortfolioImage[] }) {
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2">
           {filtered.map((image, index) => (
             <motion.button
               key={`${image.src}-${filter}`}
               type="button"
               data-cursor="view"
               onClick={() => setActive(index)}
-              className="group block w-full overflow-hidden bg-black text-left"
+              className="group relative block w-full overflow-hidden bg-black text-left"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="relative aspect-[1.35/1] w-full overflow-hidden">
+              <div className="relative aspect-[16/10] w-full overflow-hidden">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                  sizes="(min-width: 640px) 50vw, 100vw"
                   className="object-cover transition duration-700 ease-expo group-hover:scale-105"
                   loading="lazy"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-black/0 transition duration-500 group-hover:bg-black/15" />
               </div>
             </motion.button>
           ))}
