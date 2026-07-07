@@ -68,7 +68,7 @@ const SECTIONS: Section[] = [
   {
     id: "portraits",
     label: "02 — Portraits",
-    title: "Portraits",
+    title: "CEO / Executive Portraits",
     blurb: "Founders, executives and the people behind the brand.",
     blocks: [
       {
@@ -77,7 +77,7 @@ const SECTIONS: Section[] = [
         aspect: "4 / 5",
         frames: [
           { src: `${base}/exec-portrait-brick.jpg`, w: 2880, h: 3840, alt: "Executive portrait of a bald man in a navy blazer against an exposed brick wall", title: "Executive — Brick" },
-          { src: `${base}/exec-portrait-charcoal-suit.jpg`, w: 3071, h: 3840, alt: "Portrait of a man in a charcoal suit adjusting his lapel on a grey backdrop", title: "Formal — Charcoal" }
+          { src: `${base}/exec-portrait-white-knit.jpg`, w: 3072, h: 3840, alt: "Executive portrait of a smiling woman in a white knit top, arms crossed, on a dark backdrop", title: "Executive — Studio" }
         ]
       },
       {
