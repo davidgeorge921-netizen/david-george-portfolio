@@ -8,7 +8,7 @@ const skills = ["Photography", "Lighting", "Retouching", "Capture One", "Lightro
 
 const contactLinks = [
   { icon: Mail, label: "Email", href: "mailto:davidgeorge921@gmail.com" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/davidgeorge" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/david-bobby-george/" },
   { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/fireshot.studios/" },
   { icon: Download, label: "Resume", href: "/David_George_Resume.pdf" }
 ];
