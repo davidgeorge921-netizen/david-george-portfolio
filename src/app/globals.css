@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: auto;
+  background: #050505;
+}
+
+body {
+  min-height: 100vh;
+  background: #050505;
+  color: #f5f5f0;
+  font-family: var(--font-sans);
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.light {
+  background: #f5f5f0;
+  color: #050505;
+  color-scheme: light;
+}
+
+::selection {
+  background: #f5f5f0;
+  color: #050505;
+}
+
+.light ::selection {
+  background: #050505;
+  color: #f5f5f0;
+}
+
+a,
+button {
+  outline-offset: 4px;
+}
+
+img {
+  user-select: none;
+}
+
+.mask-fade {
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.masonry {
+  column-count: 1;
+  column-gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

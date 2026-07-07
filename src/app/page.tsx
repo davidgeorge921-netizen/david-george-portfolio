@@ -1,0 +1,51 @@
+import { Gallery } from "@/components/gallery";
+import { Hero } from "@/components/hero";
+import { ProjectTiles } from "@/components/project-tiles";
+import { Reveal } from "@/components/reveal";
+import { AboutStory } from "@/components/about-story";
+import { VideoEmbed } from "@/components/video-embed";
+import { featuredProjects, galleryImages } from "@/lib/portfolio";
+
+export default function Home() {
+  return (
+    <>
+      <Hero />
+      <ProjectTiles projects={featuredProjects} />
+      <section className="bg-ink px-5 py-24 text-bone light:bg-bone light:text-ink md:px-10 md:py-32">
+        <div className="mx-auto grid max-w-[1800px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <Reveal>
+            <p className="text-[11px] font-semibold uppercase tracking-wideTesla text-white/45 light:text-black/45">
+              Campaign Film / Agency: Aleaf Studios for BMW India
+            </p>
+            <h2 className="mt-4 max-w-xl text-2xl font-semibold leading-tight md:text-4xl">
+              Assistant Director of Photography for an EV campaign film.
+            </h2>
+            <p className="mt-5 max-w-xl text-sm leading-7 text-white/62 light:text-black/62">
+              Supported the cinematography team on a commercial electric vehicle campaign, helping translate a technical charging message into a clean, premium, brand-led film.
+            </p>
+            <ul className="mt-7 max-w-xl space-y-3 border-t border-white/10 pt-6 text-sm leading-7 text-white/66 light:border-black/10 light:text-black/66">
+              <li className="border-b border-white/10 pb-3 light:border-black/10">
+                Assisted with camera setup, lighting, framing, and production execution.
+              </li>
+              <li className="border-b border-white/10 pb-3 light:border-black/10">
+                Worked within brand guidelines to support a clean premium automotive look.
+              </li>
+              <li>
+                Contributed to a fast-paced campaign workflow from shoot planning through final delivery.
+              </li>
+            </ul>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <VideoEmbed
+              poster="/images/bmw-film-poster.jpg"
+              embedUrl="https://www.youtube.com/embed/hoot8A6EnFY?autoplay=1&start=76&rel=0&modestbranding=1"
+              title="BMW India EV campaign film"
+            />
+          </Reveal>
+        </div>
+      </section>
+      <Gallery images={galleryImages} />
+      <AboutStory />
+    </>
+  );
+}
