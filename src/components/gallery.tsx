@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 
-const filters = ["Motion", "Design", "Interior"] as const;
+const filters = ["Interior", "Design", "Motion"] as const;
 type Filter = "All" | (typeof filters)[number];
 
 export function Gallery({ images }: { images: PortfolioImage[] }) {

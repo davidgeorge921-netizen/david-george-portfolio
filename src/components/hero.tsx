@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 
 const slides = [
   { src: "/images/aston-martin/IMG_3268.jpg", alt: "Black Aston Martin rolling through a mountain road" },
-  { src: "/images/aston-martin/IMG_3276.jpg", alt: "Aston Martin center console and carbon-fibre detail" },
   { src: "/images/aston-martin/IMG_3260.jpg", alt: "Aston Martin bronze wheel with green brake caliper" },
+  { src: "/images/aston-martin/IMG_3276.jpg", alt: "Aston Martin center console and carbon-fibre detail" },
   { src: "/images/aston-martin/IMG_3269.jpg", alt: "Black Aston Martin front rolling on a mountain road" }
 ];
 
