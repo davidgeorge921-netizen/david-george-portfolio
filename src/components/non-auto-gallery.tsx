@@ -173,13 +173,8 @@ const SECTIONS: Section[] = [
         frame: { src: `${base}/life-field-couple.jpg`, w: 2560, h: 3840, alt: "Bride and groom laughing together in a golden mountain meadow", title: "Golden Field" }
       },
       {
-        kind: "row",
-        cols: 2,
-        aspect: "3 / 2",
-        frames: [
-          { src: `${base}/life-mother-child.jpg`, w: 3840, h: 2560, alt: "Mother lifting her daughter in a sunlit summer meadow", title: "Meadow — Family" },
-          { src: `${base}/life-celebration.jpg`, w: 3840, h: 2560, alt: "Wedding party crowded together laughing on a garden bench", title: "Celebration" }
-        ]
+        kind: "full",
+        frame: { src: `${base}/life-celebration.jpg`, w: 3840, h: 2560, alt: "Wedding party crowded together laughing on a garden bench", title: "Celebration" }
       }
     ]
   }
