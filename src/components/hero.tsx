@@ -7,7 +7,7 @@ const slides = [
   { src: "/images/aston-martin/IMG_3268.jpg", alt: "Black Aston Martin rolling through a mountain road" },
   { src: "/images/aston-martin/IMG_3276.jpg", alt: "Aston Martin center console and carbon-fibre detail" },
   { src: "/images/aston-martin/IMG_3260.jpg", alt: "Aston Martin bronze wheel with green brake caliper" },
-  { src: "/images/cars/IMG_3284.jpg", alt: "Drift car in motion at night with tyre smoke" }
+  { src: "/images/aston-martin/IMG_3269.jpg", alt: "Black Aston Martin front rolling on a mountain road" }
 ];
 
 export function Hero() {
@@ -15,7 +15,7 @@ export function Hero() {
   const loop = [...slides, ...slides];
 
   return (
-    <section className="relative h-screen overflow-hidden bg-black">
+    <section className="relative h-[100svh] overflow-hidden bg-black">
       <motion.div
         className="flex h-full w-max"
         animate={{ x: ["0%", "-50%"] }}
