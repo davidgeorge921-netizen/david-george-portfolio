@@ -26,7 +26,7 @@ export type Project = {
 
 const astonRows: Array<[string, string, PortfolioImage["category"], string]> = [
   ["IMG_3268.jpg", "Aston Martin rolling through mountain road", "Motion", "Precision at speed, framed with enough negative space to feel engineered."],
-  ["IMG_3258.jpg", "Black Aston Martin parked against rocky terrain", "Lifestyle", "A static portrait shaped like a launch image."],
+  ["IMG_3269.jpg", "Aston Martin front rolling shot", "Motion", "Low, direct, and assertive."],
   ["IMG_3260.jpg", "Aston Martin wheel and carbon brake detail", "Design", "Material, brake, and color detail held in a clean product crop."],
   ["IMG_3261.jpg", "Aston Martin rear diffuser and tail light", "Design", "Rear geometry and carbon elements framed with launch-day restraint."],
   ["IMG_3262.jpg", "Aston Martin wheel center badge macro", "Design", "Macro focus turns hardware into a brand signature."],
@@ -34,17 +34,12 @@ const astonRows: Array<[string, string, PortfolioImage["category"], string]> = [
   ["IMG_3264.jpg", "Aston Martin rolling rear three-quarter", "Motion", "A controlled rear angle with road motion as the energy line."],
   ["IMG_3265.jpg", "Aston Martin from rear in motion", "Motion", "Road texture becomes the motion layer while the car stays composed."],
   ["IMG_3266.jpg", "Aston Martin front rolling through canyon", "Motion", "Black paint, hard light, and canyon speed."],
-  ["IMG_3269.jpg", "Aston Martin front rolling shot", "Motion", "Low, direct, and assertive."],
-  ["IMG_3270.jpg", "Aston Martin front portrait under palms", "Lifestyle", "A composed front portrait with place as context."],
   ["IMG_3272.jpg", "Aston Martin seat embroidery", "Interior", "Interior craftsmanship photographed as a design object."],
   ["IMG_3275.jpg", "Aston Martin digital cluster and steering wheel", "Interior", "Driver interface captured as technology detail."],
-  ["IMG_3276.jpg", "Aston Martin console detail", "Interior", "Control surfaces, carbon, and UI treated as product photography."],
   ["IMG_3277.jpg", "Aston Martin cockpit and console", "Interior", "A wider cabin frame for material and interface hierarchy."],
   ["IMG_3278.jpg", "Aston Martin engine start button detail", "Interior", "A tactile control becomes the moment before motion."],
   ["IMG_3279.jpg", "Aston Martin instrument cluster detail", "Interior", "The driver display as precision product UI."],
   ["IMG_3280.jpg", "Aston Martin full cockpit view", "Interior", "Cabin design held in soft, premium shadow."],
-  ["IMG_3281.jpg", "Aston Martin steering wheel and dash", "Interior", "A driver-focused composition with shallow depth."],
-  ["IMG_3282.jpg", "Aston Martin hood badge macro", "Design", "Low-angle emblem study with dark paint and reflection."],
   ["IMG_3283.jpg", "Aston Martin side badge close-up", "Design", "Brand mark, surface tension, and macro geometry."],
   ["IMG_3257.jpg", "Silver Aston Martin on launch display", "Event", "Event coverage with a clean commercial read."]
 ];
@@ -199,9 +194,7 @@ export const projects: Project[] = [
       { label: "Use", value: "Brand" }
     ],
     images: [
-      image("/images/aston-martin/IMG_3270.jpg", "Aston Martin front portrait under palms", "lifestyle-cars", "Lifestyle", "A controlled front portrait with place as context.", 1152),
-      image(cars.ferrariRed, "Red Ferrari near resort architecture", "lifestyle-cars", "Lifestyle", "Aspirational without becoming cluttered."),
-      image(cars.desertWide, "SUV crossing desert under blue sky", "lifestyle-cars", "Desert", "Travel, capability, and distance.")
+      image("/images/aston-martin/IMG_3270.jpg", "Aston Martin front portrait under palms", "lifestyle-cars", "Lifestyle", "A controlled front portrait with place as context.", 1152)
     ]
   }
 ];

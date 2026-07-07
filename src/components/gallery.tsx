@@ -61,10 +61,6 @@ export function Gallery({ images }: { images: PortfolioImage[] }) {
                   loading="lazy"
                 />
               </div>
-              <div className="flex items-center justify-between px-4 py-3 text-[11px] uppercase tracking-wideTesla text-white/65">
-                <span>{image.category}</span>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-              </div>
             </motion.button>
           ))}
         </div>
