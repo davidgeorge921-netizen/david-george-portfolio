@@ -89,7 +89,7 @@ export const projects: Project[] = [
     year: "2023",
     role: "Full-time photographer at 3DMax Media for campaign, dynamic drive, and function coverage",
     location: "Oman",
-    hero: "/images/aston-martin/IMG_3268.jpg",
+    hero: "/images/aston-martin/IMG_3280.jpg",
     summary:
       "Campaign imagery photographed before the Oman launch test drive, combining dynamic rolling shots, function coverage, product detail, and interior design frames.",
     context:
