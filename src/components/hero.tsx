@@ -7,10 +7,8 @@ import { useEffect, useState } from "react";
 export type HeroSlide = { src: string; alt: string };
 
 const defaultSlides: HeroSlide[] = [
-  { src: "/images/aston-martin/IMG_3268.jpg", alt: "Black Aston Martin rolling through a mountain road" },
   { src: "/images/aston-martin/IMG_3260.jpg", alt: "Aston Martin bronze wheel with green brake caliper" },
-  { src: "/images/aston-martin/IMG_3276.jpg", alt: "Aston Martin center console and carbon-fibre detail" },
-  { src: "/images/aston-martin/IMG_3269.jpg", alt: "Black Aston Martin front rolling on a mountain road" }
+  { src: "/images/aston-martin/IMG_3276.jpg", alt: "Aston Martin center console and carbon-fibre detail" }
 ];
 
 export function Hero({ slides = defaultSlides }: { slides?: HeroSlide[] }) {
@@ -24,8 +22,8 @@ export function Hero({ slides = defaultSlides }: { slides?: HeroSlide[] }) {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // Drop the first slide on mobile.
-  const activeSlides = isMobile ? slides.slice(1) : slides;
+  // Drop the first slide on mobile (only when there are enough to spare).
+  const activeSlides = isMobile && slides.length > 3 ? slides.slice(1) : slides;
   // Duplicate the set so the marquee can loop seamlessly (translate -50% == one full set).
   const loop = [...activeSlides, ...activeSlides];
 

@@ -27,7 +27,6 @@ export type Project = {
 };
 
 const astonRows: Array<[string, string, PortfolioImage["category"], string]> = [
-  ["IMG_3269.jpg", "Aston Martin front rolling shot", "Motion", "Low, direct, and assertive."],
   ["IMG_3260.jpg", "Aston Martin wheel and carbon brake detail", "Design", "Material, brake, and color detail held in a clean product crop."],
   ["IMG_3261.jpg", "Aston Martin rear diffuser and tail light", "Design", "Rear geometry and carbon elements framed with launch-day restraint."],
   ["IMG_3262.jpg", "Aston Martin wheel center badge macro", "Design", "Macro focus turns hardware into a brand signature."],

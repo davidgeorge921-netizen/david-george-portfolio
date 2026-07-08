@@ -26,14 +26,14 @@ export const metadata: Metadata = {
       "Automotive, commercial, and campaign photography — dynamic vehicle capture, product detail, retouching, and RAW colour workflows.",
     url: "https://davidgeorgephotography.com",
     siteName: "David George Photography",
-    images: ["/images/aston-martin/IMG_3268.jpg"],
+    images: ["/images/aston-martin/IMG_3280.jpg"],
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
     title: "David George | Automotive & Commercial Photographer",
     description: "Automotive, commercial, and campaign photography.",
-    images: ["/images/aston-martin/IMG_3268.jpg"]
+    images: ["/images/aston-martin/IMG_3280.jpg"]
   }
 };
 
