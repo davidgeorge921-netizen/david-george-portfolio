@@ -1,4 +1,4 @@
-export type ProjectSlug = "aston-martin" | "desert-drive" | "lifestyle-cars";
+export type ProjectSlug = "aston-martin" | "desert-drive";
 
 export type PortfolioImage = {
   src: string;
@@ -132,29 +132,6 @@ export const projects: Project[] = [
       image(cars.desertRoad, "SUV rolling on mountain road", "desert-drive", "Motion", "Road work connects adventure to daily drivability."),
       image(cars.desertStatic, "SUV posed on desert dune at sunset", "desert-drive", "Lifestyle", "A static hero frame after the action."),
       image(cars.desertClose, "SUV carving through dune sand close-up", "desert-drive", "Desert", "Sand texture and vehicle stance held close.")
-    ]
-  },
-  {
-    slug: "lifestyle-cars",
-    title: "Lifestyle Cars",
-    eyebrow: "People, place, product",
-    year: "2023",
-    role: "Lifestyle automotive storytelling",
-    location: "Road, resort, and event environments",
-    hero: "/images/aston-martin/IMG_3270.jpg",
-    heroWidth: 3840,
-    heroHeight: 3742,
-    summary:
-      "Lifestyle images that keep the vehicle dominant while using place, atmosphere, and human context to suggest ownership.",
-    context:
-      "A supporting edit from commercial and event environments, focused on automotive lifestyle, place, and brand feeling while keeping the product visually dominant.",
-    stats: [
-      { label: "Voice", value: "Quiet" },
-      { label: "Frame", value: "Editorial" },
-      { label: "Use", value: "Brand" }
-    ],
-    images: [
-      image("/images/aston-martin/IMG_3270.jpg", "Aston Martin front portrait under palms", "lifestyle-cars", "Lifestyle", "A controlled front portrait with place as context.", 1152)
     ]
   }
 ];
