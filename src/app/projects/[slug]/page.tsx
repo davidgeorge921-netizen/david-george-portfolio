@@ -39,7 +39,15 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <article className="bg-ink text-bone light:bg-bone light:text-ink">
       <section className="relative min-h-screen overflow-hidden">
-        <Image src={project.hero} alt={`${project.title} hero`} fill priority sizes="100vw" className="object-cover" />
+        <Image
+          src={project.hero}
+          alt={`${project.title} hero`}
+          fill
+          priority
+          quality={95}
+          sizes="(max-width: 768px) 175vw, 100vw"
+          className="object-cover object-center"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/90" />
         <div className="relative z-10 mx-auto flex min-h-screen max-w-[1800px] flex-col justify-end px-5 pb-20 md:px-10 md:pb-24">
           <Link href="/#work" className="mb-10 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-wideTesla text-white/72">
