@@ -38,18 +38,34 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <article className="bg-ink text-bone light:bg-bone light:text-ink">
-      <section className="relative min-h-screen overflow-hidden">
+      {/* MOBILE — full composition preserved (natural aspect, no crop), title below */}
+      <section className="md:hidden">
         <Image
           src={project.hero}
           alt={`${project.title} hero`}
-          fill
+          width={project.heroWidth}
+          height={project.heroHeight}
           priority
           quality={95}
-          sizes="(max-width: 768px) 175vw, 100vw"
-          className="object-cover object-center"
+          sizes="100vw"
+          className="h-auto w-full"
         />
+        <div className="px-5 pb-14 pt-9">
+          <Link href="/#work" className="mb-8 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-wideTesla text-white/72 light:text-black/60">
+            <ArrowLeft size={15} />
+            Work
+          </Link>
+          <p className="text-[11px] font-semibold uppercase tracking-wideTesla text-white/65 light:text-black/55">{project.eyebrow}</p>
+          <h1 className="mt-3 text-[clamp(3.5rem,10vw,9rem)] font-semibold leading-[0.9]">{project.title}</h1>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/76 light:text-black/70">{project.summary}</p>
+        </div>
+      </section>
+
+      {/* DESKTOP — unchanged full-bleed cinematic hero */}
+      <section className="relative hidden min-h-screen overflow-hidden md:block">
+        <Image src={project.hero} alt={`${project.title} hero`} fill priority quality={95} sizes="100vw" className="object-cover object-center" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/90" />
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-[1800px] flex-col justify-end px-5 pb-20 md:px-10 md:pb-24">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-[1800px] flex-col justify-end px-10 pb-24">
           <Link href="/#work" className="mb-10 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-wideTesla text-white/72">
             <ArrowLeft size={15} />
             Work

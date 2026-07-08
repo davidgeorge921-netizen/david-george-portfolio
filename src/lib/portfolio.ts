@@ -18,6 +18,8 @@ export type Project = {
   role: string;
   location: string;
   hero: string;
+  heroWidth: number;
+  heroHeight: number;
   summary: string;
   context: string;
   stats: { label: string; value: string }[];
@@ -90,6 +92,8 @@ export const projects: Project[] = [
     role: "Full-time photographer at 3DMax Media for campaign, dynamic drive, and function coverage",
     location: "Oman",
     hero: "/images/aston-martin/IMG_3280.jpg",
+    heroWidth: 3840,
+    heroHeight: 2561,
     summary:
       "Campaign imagery photographed before the Oman launch test drive, combining dynamic rolling shots, function coverage, product detail, and interior design frames.",
     context:
@@ -109,6 +113,8 @@ export const projects: Project[] = [
     role: "Motorsport and event action photography",
     location: "Event circuit",
     hero: cars.drift,
+    heroWidth: 3840,
+    heroHeight: 2161,
     summary:
       "A motorsport set built around lateral motion, smoke, heat, crowd blur, and the instinct to hold the subject sharp when everything else is accelerating.",
     context:
@@ -132,6 +138,8 @@ export const projects: Project[] = [
     role: "Commercial campaign photography with road, desert, and dynamic team coverage",
     location: "Oman road and desert routes",
     hero: cars.desertHero,
+    heroWidth: 3840,
+    heroHeight: 2306,
     summary:
       "A launch campaign for Haval X9, produced for OT, a Chinese car seller in Oman, during the brand test drive across road and desert environments.",
     context:
@@ -161,6 +169,8 @@ export const projects: Project[] = [
     role: "Event display photography for social media",
     location: "Oman",
     hero: cars.ferrariBlack,
+    heroWidth: 3840,
+    heroHeight: 2448,
     summary:
       "Ferrari display images photographed during an event, composed for polished social media use with clean reflections, stance, color, and luxury context.",
     context:
@@ -184,6 +194,8 @@ export const projects: Project[] = [
     role: "Lifestyle automotive storytelling",
     location: "Road, resort, and event environments",
     hero: "/images/aston-martin/IMG_3270.jpg",
+    heroWidth: 3840,
+    heroHeight: 3742,
     summary:
       "Lifestyle images that keep the vehicle dominant while using place, atmosphere, and human context to suggest ownership.",
     context:
