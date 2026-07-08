@@ -19,21 +19,21 @@ export default function Home() {
               Campaign Film / Agency: Aleaf Studios for BMW India
             </p>
             <h2 className="mt-4 max-w-xl text-2xl font-semibold leading-tight md:text-4xl">
-              Assistant Director of Photography for an EV campaign film.
+              Assistant Director of Photography
             </h2>
             <ReadMore>
               <p className="mt-5 max-w-xl text-sm leading-7 text-white/62 light:text-black/62">
-                Supported the cinematography team on a commercial electric vehicle campaign, helping translate a technical charging message into a clean, premium, brand-led film.
+                Supported the cinematography team during production of a commercial campaign for BMW India&apos;s electric vehicle lineup, assisting with the execution of a premium automotive brand film.
               </p>
               <ul className="mt-7 max-w-xl space-y-3 border-t border-white/10 pt-6 text-sm leading-7 text-white/66 light:border-black/10 light:text-black/66">
                 <li className="border-b border-white/10 pb-3 light:border-black/10">
-                  Assisted with camera setup, lighting, framing, and production execution.
+                  Assisted with camera setup, lighting, framing, and on-set production workflows.
                 </li>
                 <li className="border-b border-white/10 pb-3 light:border-black/10">
-                  Worked within brand guidelines to support a clean premium automotive look.
+                  Worked closely with the Director of Photography and production crew to maintain visual consistency throughout the shoot.
                 </li>
                 <li>
-                  Contributed to a fast-paced campaign workflow from shoot planning through final delivery.
+                  Supported efficient production execution in a fast-paced commercial environment while adhering to established creative and brand standards.
                 </li>
               </ul>
             </ReadMore>
