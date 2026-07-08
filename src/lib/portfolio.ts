@@ -1,4 +1,4 @@
-export type ProjectSlug = "aston-martin" | "red-bull" | "desert-drive" | "performance-cars" | "lifestyle-cars";
+export type ProjectSlug = "aston-martin" | "desert-drive" | "lifestyle-cars";
 
 export type PortfolioImage = {
   src: string;
@@ -104,31 +104,6 @@ export const projects: Project[] = [
     images: aston
   },
   {
-    slug: "red-bull",
-    title: "Motorsport Motion",
-    eyebrow: "Trackside speed studies",
-    year: "2023",
-    role: "Motorsport and event action photography",
-    location: "Event circuit",
-    hero: cars.drift,
-    heroWidth: 3840,
-    heroHeight: 2161,
-    summary:
-      "A motorsport set built around lateral motion, smoke, heat, crowd blur, and the instinct to hold the subject sharp when everything else is accelerating.",
-    context:
-      "Captured as high-energy event coverage with a focus on panning technique, fast autofocus response, and decisive framing for social and campaign use.",
-    stats: [
-      { label: "Shutter", value: "Panning" },
-      { label: "Focus", value: "Speed" },
-      { label: "Mood", value: "Night" }
-    ],
-    images: [
-      image(cars.drift, "Red drift car panning at night", "red-bull", "Motion", "A single sharp subject inside a field of speed."),
-      image(cars.kart, "Kart driver photographed low and close", "red-bull", "Motion", "Close proximity makes motorsport feel tactile."),
-      image(cars.kartWide, "Kart crossing cones at speed", "red-bull", "Event", "Negative space gives the image room to breathe.")
-    ]
-  },
-  {
     slug: "desert-drive",
     title: "Haval X9 Oman",
     eyebrow: "Brand launch test drive campaign",
@@ -157,31 +132,6 @@ export const projects: Project[] = [
       image(cars.desertRoad, "SUV rolling on mountain road", "desert-drive", "Motion", "Road work connects adventure to daily drivability."),
       image(cars.desertStatic, "SUV posed on desert dune at sunset", "desert-drive", "Lifestyle", "A static hero frame after the action."),
       image(cars.desertClose, "SUV carving through dune sand close-up", "desert-drive", "Desert", "Sand texture and vehicle stance held close.")
-    ]
-  },
-  {
-    slug: "performance-cars",
-    title: "Ferrari Event Display",
-    eyebrow: "Social media event coverage",
-    year: "2023",
-    role: "Event display photography for social media",
-    location: "Oman",
-    hero: cars.ferrariBlack,
-    heroWidth: 3840,
-    heroHeight: 2448,
-    summary:
-      "Ferrari display images photographed during an event, composed for polished social media use with clean reflections, stance, color, and luxury context.",
-    context:
-      "Captured locally during a display event, prioritizing fast coverage, clean vehicle presentation, and social-ready crops without clutter.",
-    stats: [
-      { label: "Use", value: "Social Media" },
-      { label: "Format", value: "Event Display" },
-      { label: "Approach", value: "Product First" }
-    ],
-    images: [
-      image(cars.ferrariBlack, "Black Ferrari beside reflecting pool", "performance-cars", "Lifestyle", "A clean side profile with water as a premium surface."),
-      image(cars.ferrariWhite, "White Ferrari beside a reflecting pool", "performance-cars", "Design", "The body line reads in one uninterrupted gesture."),
-      image(cars.ferrariRed, "Red Ferrari at luxury resort", "performance-cars", "Lifestyle", "Color becomes the hero against white architecture.")
     ]
   },
   {
