@@ -41,10 +41,17 @@ export function ProjectTiles({ projects }: { projects: Project[] }) {
                     </div>
                   </div>
 
-                  {/* Mobile — title top-left, category bottom-right, image stays the hero */}
-                  <div className="absolute inset-0 p-6 md:hidden">
-                    <h3 className="max-w-[85%] text-2xl font-semibold leading-tight text-white">{project.title}</h3>
-                    <span className="absolute bottom-6 right-6 max-w-[70%] text-right text-base font-medium text-white/45">{project.eyebrow}</span>
+                  {/* Mobile — Open Project top-right, title down bottom-left, category bottom-right */}
+                  <div className="absolute inset-0 flex flex-col justify-between p-6 md:hidden">
+                    <div className="flex justify-end">
+                      <span className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wideTesla text-white/80">
+                        Open Project <ArrowUpRight size={14} />
+                      </span>
+                    </div>
+                    <div className="flex items-end justify-between gap-4">
+                      <h3 className="text-2xl font-semibold leading-tight text-white">{project.title}</h3>
+                      <span className="max-w-[45%] shrink-0 text-right text-sm font-medium text-white/45">{project.eyebrow}</span>
+                    </div>
                   </div>
                 </figure>
               </Link>
