@@ -110,9 +110,9 @@ export const projects: Project[] = [
     year: "2023",
     role: "Commercial campaign photography with road, desert, and dynamic team coverage",
     location: "Oman road and desert routes",
-    hero: cars.desertHero,
+    hero: cars.desertClose,
     heroWidth: 3840,
-    heroHeight: 2306,
+    heroHeight: 2232,
     summary:
       "A launch campaign for Haval X9, produced for OT, a Chinese car seller in Oman, during the brand test drive across road and desert environments.",
     context:
