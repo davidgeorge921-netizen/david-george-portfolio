@@ -5,7 +5,7 @@ import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const base = "/images/non-auto";
 
@@ -368,44 +368,33 @@ export function BusinessPortraits() {
 }
 
 function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [sent, setSent] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    setStatus("sending");
-    try {
-      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form)
-      });
-      if (res.ok) {
-        setStatus("sent");
-        form.reset();
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
+  // FormSubmit redirects back with ?sent=1 after a successful submission.
+  useEffect(() => {
+    if (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("sent") === "1") {
+      setSent(true);
     }
-  }
+  }, []);
 
-  if (status === "sent") {
+  if (sent) {
     return (
       <div className="border border-ink/15 bg-ink/[0.03] px-8 py-14 text-center">
-        <p className="text-2xl font-light">Thank you — your request is on its way.</p>
+        <p className="text-2xl font-light">Thank you — your request has been sent.</p>
         <p className="mt-3 text-sm text-ink/60">I’ll get back to you within 24 hours with the next steps.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-7">
+    <form action={`https://formsubmit.co/${CONTACT_EMAIL}`} method="POST" className="flex flex-col gap-7">
       {/* FormSubmit settings */}
       <input type="hidden" name="_subject" value="New Business Portraits enquiry" />
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://davidgeorgephotography.com/business-portraits?sent=1#contact" />
+      {/* Honeypot to reduce spam */}
+      <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
 
       <fieldset className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <Field label="First name" required>
@@ -442,17 +431,10 @@ function ContactForm() {
 
       <button
         type="submit"
-        disabled={status === "sending"}
-        className="mt-2 bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wideTesla text-bone transition-colors duration-300 hover:bg-signal disabled:opacity-50"
+        className="mt-2 bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wideTesla text-bone transition-colors duration-300 hover:bg-signal"
       >
-        {status === "sending" ? "Sending…" : "Request a free consultation"}
+        Request a free consultation
       </button>
-
-      {status === "error" ? (
-        <p className="text-sm text-signal">
-          Something went wrong. Please email me directly at {CONTACT_EMAIL}.
-        </p>
-      ) : null}
     </form>
   );
 }
