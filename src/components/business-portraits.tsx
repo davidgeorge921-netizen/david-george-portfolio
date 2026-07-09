@@ -11,18 +11,21 @@ const base = "/images/non-auto";
 
 /* ----------------------------------------------------------------------------
    NOTE FOR DAVID:
-   • Prices below are PLACEHOLDERS — replace the values in PACKAGES with your real
-     rates before sharing widely.
-   • The testimonials are a template — swap in real client quotes, or delete.
+   • Prices below are PLACEHOLDERS — replace the values in PACKAGES with your
+     real rates before promoting the page.
+   • The contact form emails you via FormSubmit. The FIRST time the form is used
+     you'll get a one-time "Activate Form" email from FormSubmit — click it once
+     and every submission after that lands in your inbox automatically.
+   • Testimonials are a template — replace with real client quotes or delete.
 ---------------------------------------------------------------------------- */
+
+const CONTACT_EMAIL = "davidgeorge921@gmail.com";
 
 const PACKAGES = [
   {
     name: "Individual",
     price: "from €249",
     img: `${base}/exec-portrait-charcoal-grey.jpg`,
-    w: 3072,
-    h: 3840,
     alt: "Studio business portrait of a woman against a light grey backdrop",
     copy: "A focused session for a single professional. One look, expert lighting and a set of polished, retouched portraits ready for LinkedIn, press and your website.",
     includes: "≈45 min · 1 look · 5 retouched images"
@@ -31,8 +34,6 @@ const PACKAGES = [
     name: "Executive",
     price: "from €449",
     img: `${base}/exec-portrait-cream.jpg`,
-    w: 3072,
-    h: 3840,
     alt: "Executive portrait of a woman in a cream turtleneck against a warm backdrop",
     copy: "An extended session with multiple looks and backgrounds. Ideal for founders and leadership who need a versatile set of images for profiles, speaking and media.",
     includes: "≈90 min · 2–3 looks · 12 retouched images"
@@ -41,8 +42,6 @@ const PACKAGES = [
     name: "Team / On-Location",
     price: "On request",
     img: `${base}/exec-portrait-white-knit.jpg`,
-    w: 3072,
-    h: 3840,
     alt: "Business portrait of a smiling woman in a white knit top on a dark backdrop",
     copy: "Consistent portraits for your whole team, shot at your office or a studio. Individual headshots plus group options, all matched in style and colour.",
     includes: "At your office or studio · Priced per head"
@@ -67,24 +66,24 @@ const VALUES = [
 const STEPS = [
   { n: "01", title: "Enquiry", copy: "Tell me about you or your team and how the images will be used. We agree on scope and a date." },
   { n: "02", title: "Preparation", copy: "We plan looks, wardrobe and location, so nothing is left to chance on the day." },
-  { n: "03", title: "The shoot", copy: "A relaxed, fully-directed session — in studio or on location across EMEA." },
+  { n: "03", title: "The shoot", copy: "A relaxed, fully-directed session — in studio or on location in Stuttgart and the surrounding area." },
   { n: "04", title: "Delivery", copy: "Hand-retouched, high-resolution images delivered in web and print formats, ready to use." }
 ];
 
 const GALLERY = [
-  { img: `${base}/exec-portrait-charcoal-grey.jpg`, w: 3072, h: 3840, alt: "Business portrait against a light grey backdrop" },
-  { img: `${base}/creative-mono-executive.jpg`, w: 3071, h: 3840, alt: "Black and white portrait of a bearded man in a three-piece suit" },
-  { img: `${base}/exec-portrait-white-knit.jpg`, w: 3072, h: 3840, alt: "Portrait of a smiling woman in a white knit top" },
-  { img: `${base}/creative-mono-joy.jpg`, w: 2742, h: 3840, alt: "Black and white portrait of a woman laughing" },
-  { img: `${base}/exec-portrait-cream.jpg`, w: 3072, h: 3840, alt: "Executive headshot against a warm tan backdrop" },
-  { img: `${base}/creative-mono-poise.jpg`, w: 3072, h: 3840, alt: "Black and white studio portrait of a woman with arms crossed" },
-  { img: `${base}/exec-portrait-brick.jpg`, w: 2880, h: 3840, alt: "Executive portrait of a man against exposed brick" },
-  { img: `${base}/creative-draped.jpg`, w: 3072, h: 3840, alt: "Portrait of a woman in a draped blazer against a grey backdrop" }
+  { img: `${base}/exec-portrait-charcoal-grey.jpg`, alt: "Business portrait against a light grey backdrop" },
+  { img: `${base}/creative-mono-executive.jpg`, alt: "Black and white portrait of a bearded man in a three-piece suit" },
+  { img: `${base}/exec-portrait-white-knit.jpg`, alt: "Portrait of a smiling woman in a white knit top" },
+  { img: `${base}/creative-mono-joy.jpg`, alt: "Black and white portrait of a woman laughing" },
+  { img: `${base}/exec-portrait-cream.jpg`, alt: "Executive headshot against a warm tan backdrop" },
+  { img: `${base}/creative-mono-poise.jpg`, alt: "Black and white studio portrait of a woman with arms crossed" },
+  { img: `${base}/exec-portrait-brick.jpg`, alt: "Executive portrait of a man against exposed brick" },
+  { img: `${base}/creative-draped.jpg`, alt: "Portrait of a woman in a draped blazer against a grey backdrop" }
 ];
 
 const FAQS = [
   { q: "How long does a session take?", a: "An Individual session runs about 45 minutes; an Executive session around 90. Team days are scheduled to keep each person to a short, efficient slot." },
-  { q: "Where do the shoots happen?", a: "In a studio in the Stuttgart area, or on location at your office anywhere across EMEA. Travel beyond the region is quoted per project." },
+  { q: "Where do the shoots happen?", a: "In a studio in the Stuttgart area, or on location directly at your company in Stuttgart and the surrounding area. Travel beyond the region is quoted per project." },
   { q: "How many images do I receive?", a: "You receive the retouched selects listed in each package. Additional final images can always be added afterwards." },
   { q: "How soon are the photos delivered?", a: "A gallery of proofs follows within a few days; final retouched images are typically delivered within one week." },
   { q: "Can you photograph a whole team?", a: "Yes — the Team / On-Location package delivers matched individual headshots plus group options, all consistent in style and colour." }
@@ -101,18 +100,15 @@ export function BusinessPortraits() {
       {/* HERO */}
       <section className="grid min-h-screen grid-cols-1 md:grid-cols-2">
         <div className="flex flex-col justify-center px-6 pb-16 pt-28 md:px-14 md:py-0">
-          <Eyebrow>Business Portraits · EMEA</Eyebrow>
-          <h1 className="mt-5 text-5xl font-light leading-[1.02] tracking-tight md:text-7xl">
-            Portraits that
-            <br />
-            open doors.
+          <Eyebrow>Business Portraits · Stuttgart</Eyebrow>
+          <h1 className="mt-5 text-4xl font-light leading-[1.05] tracking-tight md:text-6xl">
+            Business portraits for executives, teams and companies in Stuttgart.
           </h1>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-ink/60">
-            Executive headshots and personal-brand portraits that make the right first
-            impression — shot in studio or on location across EMEA.
+          <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">
+            Professional business portraits for LinkedIn and website.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-5">
-            <CTA href="/#about">Request a session</CTA>
+            <CTA href="#contact">Request a quote now — no obligation</CTA>
             <a href="#pricing" className="text-sm font-semibold uppercase tracking-wideTesla text-ink/60 transition hover:text-ink">
               See packages
             </a>
@@ -134,10 +130,17 @@ export function BusinessPortraits() {
       <Section>
         <Reveal>
           <p className="mx-auto max-w-3xl text-center text-2xl font-light leading-snug md:text-4xl">
-            A portrait is the first handshake you never get to give in person. It should look
-            like you on your best, most confident day — and do that work every time your name
-            appears.
+            Employee photos and business portraits with clear lighting and a calm, natural, modern
+            finish. Consistent as a series, powerful as a single image — for your website, press and
+            LinkedIn.
           </p>
+          <p className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-ink/60">
+            Shot in the studio or directly at your company in Stuttgart and the surrounding area.
+          </p>
+          {/* Add your own real client names below, or remove this line. */}
+          {/* <p className="mx-auto mt-8 max-w-2xl text-center text-sm font-semibold text-ink/70">
+            Trusted by [your real clients].
+          </p> */}
         </Reveal>
       </Section>
 
@@ -174,7 +177,7 @@ export function BusinessPortraits() {
                     {p.includes}
                   </p>
                   <div className="mt-6">
-                    <CTA href="/#about" small>
+                    <CTA href="#contact" small>
                       Enquire
                     </CTA>
                   </div>
@@ -337,26 +340,135 @@ export function BusinessPortraits() {
         </div>
       </section>
 
-      {/* CONTACT CTA */}
-      <section className="border-t border-ink/10 px-6 py-24 md:px-14 md:py-32">
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <Eyebrow center>Let’s work together</Eyebrow>
-          <h2 className="mt-5 text-4xl font-light leading-tight tracking-tight md:text-6xl">
-            Ready for portraits that work as hard as you do?
-          </h2>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-ink/60">
-            Tell me about you or your team and how the images will be used, and I’ll send options and
-            availability.
-          </p>
-          <div className="mt-9">
-            <CTA href="/#about">Start a conversation</CTA>
+      {/* CONTACT FORM */}
+      <section id="contact" className="border-t border-ink/10 px-6 py-24 md:px-14 md:py-32">
+        <div className="mx-auto max-w-2xl">
+          <Reveal>
+            <div className="mb-4 text-center">
+              <h2 className="text-4xl font-light tracking-tight md:text-6xl">
+                Ready for your new portrait?
+              </h2>
+            </div>
+            <p className="mb-12 text-center text-lg text-ink/70">
+              Briefly describe your request. I’ll get back to you within 24 hours with the next steps.
+            </p>
+          </Reveal>
+          <Reveal>
+            <ContactForm />
+          </Reveal>
+          <div className="mt-12 text-center">
+            <Link href="/non-auto-portfolio" className="text-sm font-semibold uppercase tracking-wideTesla text-ink/50 transition hover:text-ink">
+              ← Back to portfolio
+            </Link>
           </div>
-          <Link href="/non-auto-portfolio" className="mt-8 text-sm font-semibold uppercase tracking-wideTesla text-ink/50 transition hover:text-ink">
-            ← Back to portfolio
-          </Link>
         </div>
       </section>
     </div>
+  );
+}
+
+function ContactForm() {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus("sending");
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "sent") {
+    return (
+      <div className="border border-ink/15 bg-ink/[0.03] px-8 py-14 text-center">
+        <p className="text-2xl font-light">Thank you — your request is on its way.</p>
+        <p className="mt-3 text-sm text-ink/60">I’ll get back to you within 24 hours with the next steps.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-7">
+      {/* FormSubmit settings */}
+      <input type="hidden" name="_subject" value="New Business Portraits enquiry" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+
+      <fieldset className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <Field label="First name" required>
+          <input name="First Name" required autoComplete="given-name" className={inputCls} />
+        </Field>
+        <Field label="Last name" required>
+          <input name="Last Name" required autoComplete="family-name" className={inputCls} />
+        </Field>
+      </fieldset>
+
+      <Field label="E-mail" required>
+        <input type="email" name="email" required autoComplete="email" className={inputCls} />
+      </Field>
+
+      <Field label="Telephone number">
+        <input type="tel" name="Phone" autoComplete="tel" className={inputCls} />
+      </Field>
+
+      <Field label="Desired service">
+        <select name="Desired Service" defaultValue="" className={`${inputCls} appearance-none`}>
+          <option value="" disabled>
+            Select an option
+          </option>
+          <option>Individual portrait</option>
+          <option>Executive session</option>
+          <option>Team / on-location</option>
+          <option>Not sure yet</option>
+        </select>
+      </Field>
+
+      <Field label="Project information">
+        <textarea name="Project Information" rows={5} placeholder="Short message / wishes" className={`${inputCls} resize-y`} />
+      </Field>
+
+      <button
+        type="submit"
+        disabled={status === "sending"}
+        className="mt-2 bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wideTesla text-bone transition-colors duration-300 hover:bg-signal disabled:opacity-50"
+      >
+        {status === "sending" ? "Sending…" : "Request a free consultation"}
+      </button>
+
+      {status === "error" ? (
+        <p className="text-sm text-signal">
+          Something went wrong. Please email me directly at {CONTACT_EMAIL}.
+        </p>
+      ) : null}
+    </form>
+  );
+}
+
+const inputCls =
+  "w-full border border-ink/20 bg-transparent px-4 py-3 text-base text-ink outline-none transition focus:border-ink";
+
+function Field({ label, required, children }: { label: string; required?: boolean; children: ReactNode }) {
+  return (
+    <label className="flex flex-col gap-2">
+      <span className="text-sm text-ink/70">
+        {label}
+        {required ? <span className="text-ink/40"> (required)</span> : null}
+      </span>
+      {children}
+    </label>
   );
 }
 
