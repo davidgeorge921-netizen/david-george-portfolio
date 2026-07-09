@@ -2,11 +2,11 @@
 
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import Lenis from "lenis";
-import { Menu, X } from "lucide-react";
+import { ArrowUp, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function parseRgb(value: string): [number, number, number, number] | null {
   const match = value.match(/rgba?\(([^)]+)\)/);
@@ -40,9 +40,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
+  const lenisRef = useRef<Lenis | null>(null);
+  const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.08, wheelMultiplier: 0.85, smoothWheel: true });
+    lenisRef.current = lenis;
     let frame = 0;
     const raf = (time: number) => {
       lenis.raf(time);
@@ -52,14 +55,25 @@ export function SiteShell({ children }: { children: ReactNode }) {
     return () => {
       cancelAnimationFrame(frame);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
+
+  const scrollToTop = () => {
+    const lenis = lenisRef.current;
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.1 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     let ticking = false;
     const update = () => {
       ticking = false;
       setNavDark(backdropIsLight());
+      setShowTop(window.scrollY > 400);
     };
     const onScroll = () => {
       if (!ticking) {
@@ -129,8 +143,37 @@ export function SiteShell({ children }: { children: ReactNode }) {
           {children}
         </motion.main>
       </AnimatePresence>
+      <ScrollToTopButton visible={showTop} onClick={scrollToTop} />
       <CustomCursor />
     </div>
+  );
+}
+
+function ScrollToTopButton({ visible, onClick }: { visible: boolean; onClick: () => void }) {
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          type="button"
+          aria-label="Scroll back to top"
+          onClick={onClick}
+          initial={{ opacity: 0, y: 24, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 24, scale: 0.8 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.92 }}
+          className="fixed bottom-6 right-6 z-[70] flex h-12 w-12 items-center justify-center rounded-full border border-bone/30 bg-ink/70 text-bone backdrop-blur transition-colors duration-300 hover:border-signal hover:bg-signal hover:text-white light:border-ink/20 light:bg-bone/70 light:text-ink md:bottom-8 md:right-8 md:h-14 md:w-14"
+        >
+          <motion.span
+            animate={{ y: [0, -3, 0] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ArrowUp size={20} strokeWidth={1.75} />
+          </motion.span>
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 }
 
