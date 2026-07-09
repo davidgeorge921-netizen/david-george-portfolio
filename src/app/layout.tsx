@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: "%s | David George"
   },
   description:
-    "Automotive, commercial, and campaign photography — dynamic vehicle capture, reflective-surface product detail, retouching, and RAW colour workflows, from creative brief to final delivery.",
+    "Automotive, commercial, and campaign photography, dynamic vehicle capture, reflective-surface product detail, retouching, and RAW colour workflows, from creative brief to final delivery.",
   keywords: [
     "automotive photographer",
     "commercial photographer",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "David George | Automotive & Commercial Photographer",
     description:
-      "Automotive, commercial, and campaign photography — dynamic vehicle capture, product detail, retouching, and RAW colour workflows.",
+      "Automotive, commercial, and campaign photography, dynamic vehicle capture, product detail, retouching, and RAW colour workflows.",
     url: "https://davidgeorgephotography.com",
     siteName: "David George Photography",
     images: ["/images/aston-martin/IMG_3280.jpg"],

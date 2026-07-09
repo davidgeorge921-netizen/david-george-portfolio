@@ -33,7 +33,7 @@ const base = "/images/non-auto";
 const SECTIONS: Section[] = [
   {
     id: "editorial",
-    label: "01 — Editorial",
+    label: "01 Editorial",
     title: "Fashion Editorial",
     blurb: "A studio story in tartan and shadow.",
     blocks: [
@@ -42,8 +42,8 @@ const SECTIONS: Section[] = [
         cols: 2,
         aspect: "2 / 3",
         frames: [
-          { src: `${base}/editorial-tartan-gaze.jpg`, w: 2559, h: 3840, alt: "Fashion editorial portrait — model wrapped in tartan against deep shadow, direct gaze", title: "Tartan — Gaze" },
-          { src: `${base}/editorial-tartan-side.jpg`, w: 2559, h: 3840, alt: "Editorial portrait of a model draped in tartan, turned to the side in low light", title: "Tartan — Turn" }
+          { src: `${base}/editorial-tartan-gaze.jpg`, w: 2559, h: 3840, alt: "Fashion editorial portrait model wrapped in tartan against deep shadow, direct gaze", title: "Tartan Gaze" },
+          { src: `${base}/editorial-tartan-side.jpg`, w: 2559, h: 3840, alt: "Editorial portrait of a model draped in tartan, turned to the side in low light", title: "Tartan Turn" }
         ]
       },
       {
@@ -51,15 +51,15 @@ const SECTIONS: Section[] = [
         cols: 2,
         aspect: "2 / 3",
         frames: [
-          { src: `${base}/editorial-tartan-motion.jpg`, w: 2559, h: 3840, alt: "Editorial beauty portrait of a model in satin, freckles lit by warm gel against bokeh", title: "Beauty — Colour" },
-          { src: `${base}/editorial-tartan-bloom.jpg`, w: 2559, h: 3840, alt: "Editorial portrait of a model in tartan holding green blooms under coloured light", title: "Tartan — Bloom" }
+          { src: `${base}/editorial-tartan-motion.jpg`, w: 2559, h: 3840, alt: "Editorial beauty portrait of a model in satin, freckles lit by warm gel against bokeh", title: "Beauty Colour" },
+          { src: `${base}/editorial-tartan-bloom.jpg`, w: 2559, h: 3840, alt: "Editorial portrait of a model in tartan holding green blooms under coloured light", title: "Tartan Bloom" }
         ]
       }
     ]
   },
   {
     id: "portraits",
-    label: "02 — Business Portraits",
+    label: "02 Business Portraits",
     title: "Business Portraits",
     blurb: "Founders, executives and the people behind the brand.",
     blocks: [
@@ -68,8 +68,8 @@ const SECTIONS: Section[] = [
         cols: 2,
         aspect: "4 / 5",
         frames: [
-          { src: `${base}/exec-portrait-brick.jpg`, w: 2880, h: 3840, alt: "Executive portrait of a bald man in a navy blazer against an exposed brick wall", title: "Executive — Brick" },
-          { src: `${base}/exec-portrait-white-knit.jpg`, w: 3072, h: 3840, alt: "Executive portrait of a smiling woman in a white knit top, arms crossed, on a dark backdrop", title: "Executive — Studio" }
+          { src: `${base}/exec-portrait-brick.jpg`, w: 2880, h: 3840, alt: "Executive portrait of a bald man in a navy blazer against an exposed brick wall", title: "Executive Brick" },
+          { src: `${base}/exec-portrait-white-knit.jpg`, w: 3072, h: 3840, alt: "Executive portrait of a smiling woman in a white knit top, arms crossed, on a dark backdrop", title: "Executive Studio" }
         ]
       },
       {
@@ -81,9 +81,9 @@ const SECTIONS: Section[] = [
         cols: 3,
         aspect: "4 / 5",
         frames: [
-          { src: `${base}/exec-portrait-violet.jpg`, w: 3072, h: 3840, alt: "Tech founder headshot in a cream sweater against a violet backdrop", title: "Founder — Violet" },
-          { src: `${base}/exec-portrait-charcoal-grey.jpg`, w: 3072, h: 3840, alt: "Studio portrait of a smiling woman with dark wavy hair in a black top against a light grey backdrop", title: "Studio — Grey" },
-          { src: `${base}/exec-portrait-cream.jpg`, w: 3072, h: 3840, alt: "Executive headshot of a woman in a cream turtleneck against a warm tan backdrop", title: "Executive — Warm" }
+          { src: `${base}/exec-portrait-violet.jpg`, w: 3072, h: 3840, alt: "Tech founder headshot in a cream sweater against a violet backdrop", title: "Founder Violet" },
+          { src: `${base}/exec-portrait-charcoal-grey.jpg`, w: 3072, h: 3840, alt: "Studio portrait of a smiling woman with dark wavy hair in a black top against a light grey backdrop", title: "Studio Grey" },
+          { src: `${base}/exec-portrait-cream.jpg`, w: 3072, h: 3840, alt: "Executive headshot of a woman in a cream turtleneck against a warm tan backdrop", title: "Executive Warm" }
         ]
       },
       {
@@ -95,8 +95,8 @@ const SECTIONS: Section[] = [
         cols: 2,
         aspect: "4 / 5",
         frames: [
-          { src: `${base}/creative-mono-executive.jpg`, w: 3071, h: 3840, alt: "Dramatic black and white portrait of a bald bearded man in a three-piece suit", title: "Character — Mono" },
-          { src: `${base}/creative-mono-joy.jpg`, w: 2742, h: 3840, alt: "Black and white portrait of a woman laughing, glancing off camera", title: "Joy — Mono" }
+          { src: `${base}/creative-mono-executive.jpg`, w: 3071, h: 3840, alt: "Dramatic black and white portrait of a bald bearded man in a three-piece suit", title: "Character Mono" },
+          { src: `${base}/creative-mono-joy.jpg`, w: 2742, h: 3840, alt: "Black and white portrait of a woman laughing, glancing off camera", title: "Joy Mono" }
         ]
       },
       {
@@ -104,7 +104,7 @@ const SECTIONS: Section[] = [
         cols: 2,
         aspect: "4 / 5",
         frames: [
-          { src: `${base}/creative-mono-poise.jpg`, w: 3072, h: 3840, alt: "Black and white studio portrait of a woman with arms crossed, soft smile", title: "Poise — Mono" },
+          { src: `${base}/creative-mono-poise.jpg`, w: 3072, h: 3840, alt: "Black and white studio portrait of a woman with arms crossed, soft smile", title: "Poise Mono" },
           { src: `${base}/creative-draped.jpg`, w: 3072, h: 3840, alt: "Portrait of a woman in a draped black blazer against a grey backdrop", title: "Draped" }
         ]
       }
@@ -112,7 +112,7 @@ const SECTIONS: Section[] = [
   },
   {
     id: "food",
-    label: "04 — Food & Drink",
+    label: "04 Food & Drink",
     title: "Food & Beverage",
     blurb: "Hospitality work for hotels and restaurants.",
     blocks: [
@@ -144,7 +144,7 @@ const SECTIONS: Section[] = [
   },
   {
     id: "lifestyle",
-    label: "05 — Celebrations",
+    label: "05 Celebrations",
     title: "Lifestyle & Celebration",
     blurb: "Weddings and the moments around them.",
     blocks: [
@@ -170,7 +170,7 @@ const TAB: Record<string, string> = {
 
 const CATEGORIES = [{ id: "all", label: "All" }, ...SECTIONS.map((s) => ({ id: s.id, label: TAB[s.id] }))];
 
-// Categories hidden from the "All" view — they appear only under their own tab.
+// Categories hidden from the "All" view they appear only under their own tab.
 const HIDDEN_FROM_ALL = ["food", "lifestyle"];
 
 function framesOf(block: Block): Frame[] {
@@ -205,7 +205,7 @@ export function NonAutoGallery() {
 
   return (
     <>
-      {/* FILTER TABS — sticky under the fixed header */}
+      {/* FILTER TABS sticky under the fixed header */}
       <div className="sticky top-16 z-40 bg-ink/85 backdrop-blur">
         <div className="mx-auto max-w-[1600px] px-5 py-4 md:px-10">
           <div className="flex flex-wrap gap-x-6 gap-y-3 text-[11px] font-semibold uppercase tracking-wideTesla">

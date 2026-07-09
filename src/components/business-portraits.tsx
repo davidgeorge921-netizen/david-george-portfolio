@@ -59,7 +59,7 @@ const VALUES = [
   },
   {
     title: "One consistent look",
-    copy: "For teams and leadership, every portrait is matched in framing, light and colour — so your brand looks deliberate across every profile and page."
+    copy: "For teams and leadership, every portrait is matched in framing, light and colour, so your brand looks deliberate across every profile and page."
   },
   {
     title: "Relaxed, directed sessions",
@@ -70,7 +70,7 @@ const VALUES = [
 const STEPS = [
   { n: "01", title: "Enquiry", copy: "Tell me about you or your team and how the images will be used. We agree on scope and a date." },
   { n: "02", title: "Preparation", copy: "We plan looks, wardrobe and location, so nothing is left to chance on the day." },
-  { n: "03", title: "The shoot", copy: "A relaxed, fully-directed session — in studio or on location in Stuttgart and the surrounding area." },
+  { n: "03", title: "The shoot", copy: "A relaxed, fully-directed session in studio or on location in Stuttgart and the surrounding area." },
   { n: "04", title: "Delivery", copy: "Hand-retouched, high-resolution images delivered in web and print formats, ready to use." }
 ];
 
@@ -90,7 +90,7 @@ const FAQS = [
   { q: "Where do the shoots happen?", a: "In a studio in the Stuttgart area, or on location directly at your company in Stuttgart and the surrounding area. Travel beyond the region is quoted per project." },
   { q: "How many images do I receive?", a: "You receive the retouched selects listed in each package. Additional final images can always be added afterwards." },
   { q: "How soon are the photos delivered?", a: "A gallery of proofs follows within a few days; final retouched images are typically delivered within one week." },
-  { q: "Can you photograph a whole team?", a: "Yes — the Team / On-Location package delivers matched individual headshots plus group options, all consistent in style and colour." }
+  { q: "Can you photograph a whole team?", a: "Yes, the Team / On-Location package delivers matched individual headshots plus group options, all consistent in style and colour." }
 ];
 
 const TESTIMONIALS = [
@@ -133,7 +133,7 @@ export function BusinessPortraits() {
         <Reveal>
           <p className="mx-auto max-w-3xl text-center text-2xl font-light leading-snug md:text-4xl">
             Employee photos and business portraits with clear lighting and a calm, natural, modern
-            finish. Consistent as a series, powerful as a single image — for your website, press and
+            finish. Consistent as a series, powerful as a single image, for your website, press and
             LinkedIn.
           </p>
           <p className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-ink/60">
@@ -263,7 +263,7 @@ export function BusinessPortraits() {
                 Presence, not performance.
               </h2>
               <p className="mt-6 text-base leading-relaxed text-ink/60">
-                The best business portrait doesn’t look posed — it looks like you, caught mid-thought,
+                The best business portrait doesn’t look posed. It looks like you, caught mid-thought,
                 at ease. My job is to build that ease quickly, read the light, and make the technical
                 side invisible so all that remains is a genuine, confident presence.
               </p>
@@ -312,7 +312,7 @@ export function BusinessPortraits() {
                     “{t.quote}”
                   </blockquote>
                   <figcaption className="mt-5 text-sm text-ink/50">
-                    <span className="font-medium text-ink">{t.name}</span> — {t.role}
+                    <span className="font-medium text-ink">{t.name}</span>, {t.role}
                   </figcaption>
                 </figure>
               </Reveal>
@@ -405,7 +405,7 @@ function ContactForm() {
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
           subject: "New Business Portraits enquiry",
-          from_name: "David George Photography — Website",
+          from_name: "David George Photography website",
           ...Object.fromEntries(fd)
         }),
         signal: controller.signal
@@ -427,7 +427,7 @@ function ContactForm() {
   if (status === "sent") {
     return (
       <div className="border border-ink/15 bg-ink/[0.03] px-8 py-14 text-center">
-        <p className="text-2xl font-light">Thank you — your request has been sent.</p>
+        <p className="text-2xl font-light">Thank you! Your request has been sent.</p>
         <p className="mt-3 text-sm text-ink/60">I’ll get back to you within 24 hours with the next steps.</p>
       </div>
     );
