@@ -179,6 +179,9 @@ const TAB: Record<string, string> = {
 
 const CATEGORIES = [{ id: "all", label: "All" }, ...SECTIONS.map((s) => ({ id: s.id, label: TAB[s.id] }))];
 
+// Categories hidden from the "All" view — they appear only under their own tab.
+const HIDDEN_FROM_ALL = ["food", "lifestyle"];
+
 function framesOf(block: Block): Frame[] {
   if (block.kind === "row") return block.frames;
   return [block.frame];
@@ -194,8 +197,11 @@ export function NonAutoGallery() {
   const [active, setActive] = useState<number | null>(null);
 
   const visible = useMemo(
-    // "All" shows every category except Food; Food photos live only under the Food tab.
-    () => (cat === "all" ? ALL_SHOTS.filter((s) => s.cat !== "food") : ALL_SHOTS.filter((s) => s.cat === cat)),
+    // "All" hides the categories in HIDDEN_FROM_ALL (Food, Lifestyle); they show only under their own tab.
+    () =>
+      cat === "all"
+        ? ALL_SHOTS.filter((s) => !HIDDEN_FROM_ALL.includes(s.cat))
+        : ALL_SHOTS.filter((s) => s.cat === cat),
     [cat]
   );
 
