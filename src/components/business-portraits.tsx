@@ -105,7 +105,7 @@ export function BusinessPortraits() {
       <section className="grid grid-cols-1 pt-16 md:min-h-screen md:grid-cols-2 md:pt-0">
         <div className="order-2 flex flex-col justify-center px-6 py-12 md:order-none md:px-14 md:py-0">
           <Eyebrow>Business Portraits · Stuttgart</Eyebrow>
-          <h1 className="mt-5 text-5xl font-light leading-[1.03] tracking-tight md:text-6xl">
+          <h1 className="mt-5 text-[2.4rem] font-light leading-[1.05] tracking-tight md:text-6xl">
             Business portraits for executives, teams and companies in Stuttgart.
           </h1>
           <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">
