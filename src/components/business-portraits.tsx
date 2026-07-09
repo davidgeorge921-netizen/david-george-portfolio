@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import type { FormEvent, ReactNode } from "react";
+import { useState } from "react";
 
 const base = "/images/non-auto";
 
@@ -13,13 +13,17 @@ const base = "/images/non-auto";
    NOTE FOR DAVID:
    • Prices below are PLACEHOLDERS — replace the values in PACKAGES with your
      real rates before promoting the page.
-   • The contact form emails you via FormSubmit. The FIRST time the form is used
-     you'll get a one-time "Activate Form" email from FormSubmit — click it once
-     and every submission after that lands in your inbox automatically.
+   • The contact form emails you via Web3Forms. Paste a free access key into
+     WEB3FORMS_ACCESS_KEY below (get one instantly at https://web3forms.com by
+     entering davidgeorge921@gmail.com). Until a key is set, the form falls back
+     to opening the visitor's email app pre-filled.
    • Testimonials are a template — replace with real client quotes or delete.
 ---------------------------------------------------------------------------- */
 
 const CONTACT_EMAIL = "davidgeorge921@gmail.com";
+
+// TODO: paste your free Web3Forms access key here (https://web3forms.com).
+const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
 
 const PACKAGES = [
   {
@@ -367,17 +371,66 @@ export function BusinessPortraits() {
   );
 }
 
+function buildMailto(fd: FormData): string {
+  const g = (k: string) => ((fd.get(k) as string) || "").trim();
+  const body = [
+    `Name: ${g("First Name")} ${g("Last Name")}`,
+    `Email: ${g("email")}`,
+    `Phone: ${g("Phone")}`,
+    `Desired service: ${g("Desired Service")}`,
+    "",
+    g("Project Information")
+  ].join("\n");
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Business Portraits enquiry")}&body=${encodeURIComponent(body)}`;
+}
+
 function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [mailto, setMailto] = useState("");
 
-  // FormSubmit redirects back with ?sent=1 after a successful submission.
-  useEffect(() => {
-    if (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("sent") === "1") {
-      setSent(true);
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const mailtoHref = buildMailto(fd);
+    setMailto(mailtoHref);
+
+    // No key configured yet → open the visitor's email app pre-filled.
+    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY.startsWith("YOUR_")) {
+      window.location.href = mailtoHref;
+      return;
     }
-  }, []);
 
-  if (sent) {
+    setStatus("sending");
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: "New Business Portraits enquiry",
+          from_name: "David George Photography — Website",
+          ...Object.fromEntries(fd)
+        }),
+        signal: controller.signal
+      });
+      clearTimeout(timeout);
+      const data = (await res.json().catch(() => ({}))) as { success?: boolean };
+      if (res.ok && data.success) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      clearTimeout(timeout);
+      setStatus("error");
+    }
+  }
+
+  if (status === "sent") {
     return (
       <div className="border border-ink/15 bg-ink/[0.03] px-8 py-14 text-center">
         <p className="text-2xl font-light">Thank you — your request has been sent.</p>
@@ -387,14 +440,9 @@ function ContactForm() {
   }
 
   return (
-    <form action={`https://formsubmit.co/${CONTACT_EMAIL}`} method="POST" className="flex flex-col gap-7">
-      {/* FormSubmit settings */}
-      <input type="hidden" name="_subject" value="New Business Portraits enquiry" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_next" value="https://davidgeorgephotography.com/business-portraits?sent=1#contact" />
-      {/* Honeypot to reduce spam */}
-      <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
+    <form onSubmit={handleSubmit} className="flex flex-col gap-7">
+      {/* Web3Forms honeypot */}
+      <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
 
       <fieldset className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <Field label="First name" required>
@@ -431,10 +479,20 @@ function ContactForm() {
 
       <button
         type="submit"
-        className="mt-2 bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wideTesla text-bone transition-colors duration-300 hover:bg-signal"
+        disabled={status === "sending"}
+        className="mt-2 bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wideTesla text-bone transition-colors duration-300 hover:bg-signal disabled:opacity-50"
       >
-        Request a free consultation
+        {status === "sending" ? "Sending…" : "Request a free consultation"}
       </button>
+
+      {status === "error" ? (
+        <p className="text-sm text-ink/70">
+          Couldn’t send automatically.{" "}
+          <a href={mailto || `mailto:${CONTACT_EMAIL}`} className="font-semibold text-signal underline">
+            Tap here to email me directly →
+          </a>
+        </p>
+      ) : null}
     </form>
   );
 }
