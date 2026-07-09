@@ -194,7 +194,8 @@ export function NonAutoGallery() {
   const [active, setActive] = useState<number | null>(null);
 
   const visible = useMemo(
-    () => (cat === "all" ? ALL_SHOTS : ALL_SHOTS.filter((s) => s.cat === cat)),
+    // "All" shows every category except Food; Food photos live only under the Food tab.
+    () => (cat === "all" ? ALL_SHOTS.filter((s) => s.cat !== "food") : ALL_SHOTS.filter((s) => s.cat === cat)),
     [cat]
   );
 
