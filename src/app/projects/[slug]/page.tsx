@@ -75,15 +75,22 @@ export default async function ProjectPage({ params }: Props) {
           <p className="mt-7 max-w-3xl text-lg leading-8 text-white/76">{project.summary}</p>
         </div>
       </section>
-      <section className="space-y-5 px-5 py-20 md:px-10 md:py-28">
+      <section className="space-y-5 overflow-x-clip px-5 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-[1800px] space-y-5">
-          {project.images.map((image, imageIndex) => (
+          {project.images.map((image, imageIndex) => {
+            const isFullBleed = image.src.includes("IMG_3265.jpg");
+            return (
             <figure key={image.src} className={imageIndex % 3 === 1 ? "ml-auto max-w-5xl" : "max-w-[1800px]"}>
-              <div className="relative aspect-[16/9] overflow-hidden bg-white/5">
+              <div
+                className={`relative aspect-[16/9] overflow-hidden bg-white/5 ${
+                  isFullBleed ? "mx-[calc(50%-50vw)] w-screen" : ""
+                }`}
+              >
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
+                  quality={isFullBleed ? 95 : undefined}
                   sizes={imageIndex % 3 === 1 ? "(min-width: 1024px) 70vw, 100vw" : "100vw"}
                   className="object-cover"
                 />
@@ -93,7 +100,8 @@ export default async function ProjectPage({ params }: Props) {
                 <span>{String(imageIndex + 1).padStart(2, "0")}</span>
               </figcaption>
             </figure>
-          ))}
+            );
+          })}
         </div>
       </section>
       <section className="border-t border-white/10 px-5 py-16 light:border-black/10 md:px-10">
