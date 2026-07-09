@@ -104,18 +104,14 @@ export function BusinessPortraits() {
       {/* HERO — mobile: image on top, headline below · desktop: text left, image right */}
       <section className="grid grid-cols-1 pt-16 md:min-h-screen md:grid-cols-2 md:pt-0">
         <div className="order-2 flex flex-col justify-center px-6 py-12 md:order-none md:px-14 md:py-0">
-          <Eyebrow>Business Portraits · Stuttgart</Eyebrow>
-          <h1 className="mt-5 text-[2.4rem] font-light leading-[1.05] tracking-tight md:text-6xl">
+          <h1 className="text-[2.5rem] font-bold leading-[1.02] tracking-tight md:text-6xl lg:text-7xl">
             Business portraits for executives, teams and companies in Stuttgart.
           </h1>
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">
+          <p className="mt-6 max-w-md text-xl font-medium leading-snug text-ink md:text-2xl">
             Professional business portraits for LinkedIn and website.
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-5">
-            <CTA href="#contact">Request a quote now — no obligation</CTA>
-            <a href="#pricing" className="text-sm font-semibold uppercase tracking-wideTesla text-ink/60 transition hover:text-ink">
-              See packages
-            </a>
+          <div className="mt-10">
+            <CTA href="#contact">Request a quote now, no obligation.</CTA>
           </div>
         </div>
         <div className="relative order-1 h-[62vh] w-full md:order-none md:h-auto md:min-h-screen">
@@ -173,7 +169,7 @@ export function BusinessPortraits() {
                     />
                   </div>
                   <h3 className="text-xl font-normal">{p.name}</h3>
-                  <p className="mt-1 text-sm font-semibold uppercase tracking-wideTesla text-signal">
+                  <p className="mt-1 text-sm font-semibold uppercase tracking-wideTesla text-olive">
                     {p.price}
                   </p>
                   <p className="mt-4 text-sm leading-relaxed text-ink/60">{p.copy}</p>
@@ -297,7 +293,7 @@ export function BusinessPortraits() {
             {STEPS.map((s) => (
               <Reveal key={s.n}>
                 <div>
-                  <p className="text-sm font-semibold text-signal">{s.n}</p>
+                  <p className="text-sm font-semibold text-olive">{s.n}</p>
                   <h3 className="mt-3 text-lg font-medium">{s.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink/60">{s.copy}</p>
                 </div>
@@ -480,7 +476,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-2 bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wideTesla text-bone transition-colors duration-300 hover:bg-signal disabled:opacity-50"
+        className="mt-2 bg-olive px-8 py-4 text-base font-medium text-bone transition-opacity duration-300 hover:opacity-90 disabled:opacity-50"
       >
         {status === "sending" ? "Sending…" : "Request a free consultation"}
       </button>
@@ -532,8 +528,8 @@ function CTA({ href, children, small }: { href: string; children: ReactNode; sma
   return (
     <a
       href={href}
-      className={`inline-flex items-center justify-center bg-ink font-semibold uppercase tracking-wideTesla text-bone transition-colors duration-300 hover:bg-signal ${
-        small ? "px-5 py-2.5 text-[11px]" : "px-7 py-3.5 text-xs"
+      className={`inline-flex items-center justify-center bg-olive text-center font-medium text-bone transition-opacity duration-300 hover:opacity-90 ${
+        small ? "px-6 py-3 text-sm" : "px-8 py-4 text-base"
       }`}
     >
       {children}

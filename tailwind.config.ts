@@ -13,7 +13,8 @@ const config: Config = {
         ink: "#050505",
         bone: "#f5f5f0",
         line: "rgba(255,255,255,0.14)",
-        signal: "#e82127"
+        signal: "#e82127",
+        olive: "#4a4b2e"
       },
       letterSpacing: {
         wideTesla: "0.08em"
