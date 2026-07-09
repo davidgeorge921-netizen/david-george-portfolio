@@ -102,8 +102,8 @@ export function BusinessPortraits() {
   return (
     <div className="bg-bone text-ink">
       {/* HERO — mobile: image on top, headline below · desktop: text left, image right */}
-      <section className="grid grid-cols-1 pt-16 md:min-h-screen md:grid-cols-2 md:pt-0">
-        <div className="order-2 flex flex-col justify-center px-6 py-12 md:order-none md:px-14 md:py-0">
+      <section className="grid grid-cols-1 pt-16 md:min-h-screen md:grid-cols-2 md:gap-x-12 md:pt-0">
+        <div className="order-2 flex flex-col justify-center px-6 py-12 md:order-none md:pl-14 md:pr-0 md:py-0">
           <h1 className="text-[2.5rem] font-bold leading-[1.02] tracking-tight md:text-6xl lg:text-7xl">
             Business portraits for executives, teams and companies in Stuttgart.
           </h1>
@@ -114,15 +114,17 @@ export function BusinessPortraits() {
             <CTA href="#contact">Request a quote now, no obligation.</CTA>
           </div>
         </div>
-        <div className="relative order-1 h-[62vh] w-full md:order-none md:h-auto md:min-h-screen">
-          <Image
-            src={`${base}/exec-portrait-charcoal-grey.jpg`}
-            alt="Business portrait of a professional against a light grey backdrop"
-            fill
-            priority
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-cover"
-          />
+        <div className="order-1 md:order-none md:pt-16">
+          <div className="relative h-[62vh] w-full md:h-[calc(100vh_-_4rem)]">
+            <Image
+              src={`${base}/exec-portrait-charcoal-grey.jpg`}
+              alt="Business portrait of a professional against a light grey backdrop"
+              fill
+              priority
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       </section>
 
@@ -137,10 +139,6 @@ export function BusinessPortraits() {
           <p className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-ink/60">
             Shot in the studio or directly at your company in Stuttgart and the surrounding area.
           </p>
-          {/* Add your own real client names below, or remove this line. */}
-          {/* <p className="mx-auto mt-8 max-w-2xl text-center text-sm font-semibold text-ink/70">
-            Trusted by [your real clients].
-          </p> */}
         </Reveal>
       </Section>
 
