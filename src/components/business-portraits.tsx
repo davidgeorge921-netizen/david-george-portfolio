@@ -22,8 +22,8 @@ const base = "/images/non-auto";
 
 const CONTACT_EMAIL = "davidgeorge921@gmail.com";
 
-// TODO: paste your free Web3Forms access key here (https://web3forms.com).
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+// Web3Forms access key (delivers submissions to davidgeorge921@gmail.com).
+const WEB3FORMS_ACCESS_KEY = "47c49c6b-0bee-47cf-9536-6d83e51fa202";
 
 const PACKAGES = [
   {
