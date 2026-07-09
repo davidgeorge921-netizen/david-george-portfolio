@@ -3,9 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Hero, type HeroSlide } from "@/components/hero";
-import { VideoEmbed } from "@/components/video-embed";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type Frame = {
   src: string;
@@ -28,15 +26,9 @@ type Section = {
   blocks: Block[];
 };
 
-const base = "/images/non-auto";
+type Shot = Frame & { cat: string };
 
-// Same marquee as the automotive homepage — only the photographs change.
-const HERO_SLIDES: HeroSlide[] = [
-  { src: `${base}/editorial-tartan-gaze.jpg`, alt: "Fashion editorial portrait — model wrapped in tartan, direct gaze" },
-  { src: `${base}/editorial-tartan-side.jpg`, alt: "Editorial portrait of a model draped in tartan, turned to the side in low light" },
-  { src: `${base}/editorial-tartan-motion.jpg`, alt: "Editorial beauty portrait — freckles lit by warm gel against bokeh" },
-  { src: `${base}/editorial-tartan-bloom.jpg`, alt: "Editorial portrait of a model in tartan holding green blooms under coloured light" }
-];
+const base = "/images/non-auto";
 
 const SECTIONS: Section[] = [
   {
@@ -176,189 +168,114 @@ const SECTIONS: Section[] = [
   }
 ];
 
-// Flatten every frame in exact render order for lightbox navigation.
+// Short tab labels per category.
+const TAB: Record<string, string> = {
+  editorial: "Editorial",
+  portraits: "Portraits",
+  creative: "Creative",
+  food: "Food",
+  lifestyle: "Lifestyle"
+};
+
+const CATEGORIES = [{ id: "all", label: "All" }, ...SECTIONS.map((s) => ({ id: s.id, label: TAB[s.id] }))];
+
 function framesOf(block: Block): Frame[] {
   if (block.kind === "row") return block.frames;
   return [block.frame];
 }
-const FLAT: Frame[] = SECTIONS.flatMap((s) => s.blocks.flatMap(framesOf));
-const INDEX = new Map(FLAT.map((f, i) => [f.src, i]));
+
+// Every photo, flattened and tagged with its category, in source order.
+const ALL_SHOTS: Shot[] = SECTIONS.flatMap((s) =>
+  s.blocks.flatMap(framesOf).map((f) => ({ ...f, cat: s.id }))
+);
 
 export function NonAutoGallery() {
+  const [cat, setCat] = useState("all");
   const [active, setActive] = useState<number | null>(null);
-  const openAt = useCallback((src: string) => {
-    const i = INDEX.get(src);
-    if (i !== undefined) setActive(i);
-  }, []);
+
+  const visible = useMemo(
+    () => (cat === "all" ? ALL_SHOTS : ALL_SHOTS.filter((s) => s.cat === cat)),
+    [cat]
+  );
+
+  // Closing the lightbox when the filter changes keeps the index valid.
+  useEffect(() => {
+    setActive(null);
+  }, [cat]);
+
+  const openAt = useCallback((i: number) => setActive(i), []);
 
   return (
     <>
-      {/* HERO — same marquee as the automotive homepage */}
-      <Hero slides={HERO_SLIDES} />
-
-      {SECTIONS.map((section) => (
-        <div key={section.id}>
-          <section
-            id={section.id}
-            className="border-t border-white/[0.06] px-5 py-16 md:px-10 md:py-24"
-          >
-            <div className="mx-auto max-w-[1600px]">
-              <SectionHeader label={section.label} title={section.title} blurb={section.blurb} />
-              <div className="space-y-3 md:space-y-4">
-                {section.blocks.map((block, i) => (
-                  <BlockView key={i} block={block} openAt={openAt} />
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {section.id === "creative" ? <BehindTheLens /> : null}
+      {/* FILTER TABS — sticky under the fixed header */}
+      <div className="sticky top-16 z-40 bg-ink/85 backdrop-blur">
+        <div className="mx-auto max-w-[1600px] px-5 py-4 md:px-10">
+          <div className="flex flex-wrap gap-x-6 gap-y-3 text-[11px] font-semibold uppercase tracking-wideTesla">
+            {CATEGORIES.map((c) => (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() => setCat(c.id)}
+                className={`relative pb-1 transition-colors duration-300 ${
+                  cat === c.id ? "text-bone" : "text-white/40 hover:text-white/70"
+                }`}
+              >
+                {c.label}
+                {cat === c.id ? (
+                  <motion.span
+                    layoutId="cat-underline"
+                    className="absolute inset-x-0 -bottom-px h-px bg-signal"
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  />
+                ) : null}
+              </button>
+            ))}
+          </div>
         </div>
-      ))}
+      </div>
 
-      {/* CLOSING */}
-      <section className="border-t border-white/[0.06] px-5 py-24 md:px-10 md:py-32">
-        <div className="mx-auto flex max-w-[1600px] flex-col gap-6">
-          <p className="text-[11px] font-semibold uppercase tracking-wideTesla text-white/40">Commissions</p>
-          <p className="max-w-3xl text-2xl font-light leading-snug text-bone md:text-4xl">
-            Available for commercial, editorial and brand commissions across EMEA.
-          </p>
-          <a
-            href="/#about"
-            className="group inline-flex w-fit items-center gap-3 text-sm font-semibold uppercase tracking-wideTesla text-white/70 transition hover:text-bone"
+      {/* MASONRY GRID */}
+      <div className="px-5 pb-24 pt-6 md:px-10 md:pb-32 md:pt-8">
+        <div className="mx-auto max-w-[1600px]">
+          <motion.div
+            key={cat}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="columns-2 gap-3 md:columns-3 md:gap-4 lg:columns-4"
           >
-            Start a conversation
-            <span className="transition-transform duration-500 ease-expo group-hover:translate-x-1">→</span>
-          </a>
+            {visible.map((shot, i) => (
+              <MasonryTile key={shot.src} shot={shot} onClick={() => openAt(i)} />
+            ))}
+          </motion.div>
         </div>
-      </section>
+      </div>
 
-      <Lightbox frames={FLAT} active={active} setActive={setActive} />
+      <Lightbox frames={visible} active={active} setActive={setActive} />
     </>
   );
 }
 
-function SectionHeader({ label, title, blurb }: { label: string; title: string; blurb: string }) {
-  return (
-    <motion.div
-      className="mb-10 flex flex-col gap-5 md:mb-14 md:flex-row md:items-end md:justify-between md:gap-16"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-    >
-      <div>
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-wideTesla text-white/40">{label}</p>
-        <h2 className="text-3xl font-light tracking-tight text-bone md:text-5xl">{title}</h2>
-      </div>
-      <p className="max-w-md text-sm leading-relaxed text-white/50 md:text-right">{blurb}</p>
-    </motion.div>
-  );
-}
-
-function BlockView({ block, openAt }: { block: Block; openAt: (src: string) => void }) {
-  if (block.kind === "full") {
-    return (
-      <Reveal>
-        <Tile frame={block.frame} openAt={openAt} sizes="(min-width: 1600px) 1600px, 100vw" />
-      </Reveal>
-    );
-  }
-  if (block.kind === "feature") {
-    return (
-      <Reveal>
-        <div className="mx-auto max-w-[440px] md:max-w-[520px]">
-          <Tile frame={block.frame} openAt={openAt} sizes="(min-width: 768px) 520px, 100vw" />
-        </div>
-      </Reveal>
-    );
-  }
-  const cols = block.cols;
-  const grid = cols === 2 ? "grid-cols-2" : "grid-cols-1 sm:grid-cols-3";
-  const sizes =
-    cols === 2 ? "(min-width: 768px) 50vw, 50vw" : "(min-width: 640px) 33vw, 100vw";
-  return (
-    <Reveal>
-      <div className={`grid gap-3 md:gap-4 ${grid}`}>
-        {block.frames.map((frame) => (
-          <Tile key={frame.src} frame={frame} openAt={openAt} sizes={sizes} aspect={block.aspect} />
-        ))}
-      </div>
-    </Reveal>
-  );
-}
-
-function Tile({
-  frame,
-  openAt,
-  sizes,
-  aspect
-}: {
-  frame: Frame;
-  openAt: (src: string) => void;
-  sizes: string;
-  aspect?: string;
-}) {
+function MasonryTile({ shot, onClick }: { shot: Shot; onClick: () => void }) {
   return (
     <button
       type="button"
-      onClick={() => openAt(frame.src)}
-      aria-label={`Open ${frame.title}`}
-      className="group relative block w-full overflow-hidden bg-white/[0.03] text-left"
-      style={{ aspectRatio: aspect ?? `${frame.w} / ${frame.h}` }}
+      onClick={onClick}
+      aria-label={`Open ${shot.title}`}
+      className="group mb-3 block w-full break-inside-avoid overflow-hidden bg-white/[0.03] md:mb-4"
     >
-      <Image
-        src={frame.src}
-        alt={frame.alt}
-        fill
-        sizes={sizes}
-        loading="lazy"
-        className="object-cover transition-transform duration-[900ms] ease-expo group-hover:scale-[1.04]"
-      />
-      <div className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/10" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end p-4 opacity-0 transition duration-500 group-hover:opacity-100">
-        <span className="text-[10px] font-semibold uppercase tracking-wideTesla text-white/80 drop-shadow">
-          {frame.title}
-        </span>
+      <div className="relative w-full" style={{ aspectRatio: `${shot.w} / ${shot.h}` }}>
+        <Image
+          src={shot.src}
+          alt={shot.alt}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+          loading="lazy"
+          className="object-cover transition-transform duration-[900ms] ease-expo group-hover:scale-[1.03]"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/10" />
       </div>
     </button>
-  );
-}
-
-function Reveal({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function BehindTheLens() {
-  return (
-    <section
-      id="behind-the-lens"
-      className="border-t border-white/[0.06] px-5 py-16 md:px-10 md:py-24"
-    >
-      <div className="mx-auto max-w-[1600px]">
-        <SectionHeader
-          label="Behind the Lens"
-          title="On Set"
-          blurb="How the work comes together."
-        />
-        <Reveal>
-          <VideoEmbed
-            poster="/images/non-auto-video-poster.jpg"
-            embedUrl="https://www.youtube.com/embed/j00PxoZ9w0U?autoplay=1&rel=0&modestbranding=1"
-            title="Behind the scenes of recent work"
-          />
-        </Reveal>
-      </div>
-    </section>
   );
 }
 
