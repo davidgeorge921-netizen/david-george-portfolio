@@ -59,8 +59,8 @@ const SECTIONS: Section[] = [
   },
   {
     id: "portraits",
-    label: "02 — Portraits",
-    title: "CEO / Executive Portraits",
+    label: "02 — Business Portraits",
+    title: "Business Portraits",
     blurb: "Founders, executives and the people behind the brand.",
     blocks: [
       {
@@ -85,15 +85,7 @@ const SECTIONS: Section[] = [
           { src: `${base}/exec-portrait-charcoal-grey.jpg`, w: 3072, h: 3840, alt: "Studio portrait of a smiling woman with dark wavy hair in a black top against a light grey backdrop", title: "Studio — Grey" },
           { src: `${base}/exec-portrait-cream.jpg`, w: 3072, h: 3840, alt: "Executive headshot of a woman in a cream turtleneck against a warm tan backdrop", title: "Executive — Warm" }
         ]
-      }
-    ]
-  },
-  {
-    id: "creative",
-    label: "03 — Studio",
-    title: "Creative Portraits",
-    blurb: "Character studies, shaped by light.",
-    blocks: [
+      },
       {
         kind: "feature",
         frame: { src: `${base}/creative-mono-nocturne.jpg`, w: 2458, h: 3840, alt: "Black and white nocturnal portrait of a man in a suit beneath architectural columns", title: "Nocturne" }
@@ -171,8 +163,7 @@ const SECTIONS: Section[] = [
 // Short tab labels per category.
 const TAB: Record<string, string> = {
   editorial: "Editorial",
-  portraits: "Portraits",
-  creative: "Creative",
+  portraits: "Business Portraits",
   food: "Food",
   lifestyle: "Lifestyle"
 };
