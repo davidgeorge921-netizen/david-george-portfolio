@@ -101,11 +101,11 @@ const TESTIMONIALS = [
 export function BusinessPortraits() {
   return (
     <div className="bg-bone text-ink">
-      {/* HERO */}
-      <section className="grid min-h-screen grid-cols-1 md:grid-cols-2">
-        <div className="flex flex-col justify-center px-6 pb-16 pt-28 md:px-14 md:py-0">
+      {/* HERO — mobile: image on top, headline below · desktop: text left, image right */}
+      <section className="grid grid-cols-1 pt-16 md:min-h-screen md:grid-cols-2 md:pt-0">
+        <div className="order-2 flex flex-col justify-center px-6 py-12 md:order-none md:px-14 md:py-0">
           <Eyebrow>Business Portraits · Stuttgart</Eyebrow>
-          <h1 className="mt-5 text-4xl font-light leading-[1.05] tracking-tight md:text-6xl">
+          <h1 className="mt-5 text-5xl font-light leading-[1.03] tracking-tight md:text-6xl">
             Business portraits for executives, teams and companies in Stuttgart.
           </h1>
           <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">
@@ -118,7 +118,7 @@ export function BusinessPortraits() {
             </a>
           </div>
         </div>
-        <div className="relative min-h-[60vh] md:min-h-screen">
+        <div className="relative order-1 h-[62vh] w-full md:order-none md:h-auto md:min-h-screen">
           <Image
             src={`${base}/exec-portrait-charcoal-grey.jpg`}
             alt="Business portrait of a professional against a light grey backdrop"
