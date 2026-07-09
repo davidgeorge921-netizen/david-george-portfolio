@@ -109,6 +109,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <a href="/#work">Work</a>
             <a href="/#gallery">Gallery</a>
             <Link href="/non-auto-portfolio">Non-Auto Portfolio</Link>
+            <Link href="/business-portraits">Business Portraits</Link>
             <a href="/#about">About Me / Contact</a>
           </div>
           <button
@@ -127,6 +128,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <a href="/#work" onClick={() => setMenuOpen(false)} className="border-b border-white/10 py-4">Work</a>
               <a href="/#gallery" onClick={() => setMenuOpen(false)} className="border-b border-white/10 py-4">Gallery</a>
               <Link href="/non-auto-portfolio" onClick={() => setMenuOpen(false)} className="border-b border-white/10 py-4">Non-Auto Portfolio</Link>
+              <Link href="/business-portraits" onClick={() => setMenuOpen(false)} className="border-b border-white/10 py-4">Business Portraits</Link>
               <a href="/#about" onClick={() => setMenuOpen(false)} className="py-4">About Me / Contact</a>
             </div>
           </div>
