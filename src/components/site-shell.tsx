@@ -134,17 +134,17 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </div>
         )}
       </header>
-      <AnimatePresence mode="wait">
-        <motion.main
-          key={pathname}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -16 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {children}
-        </motion.main>
-      </AnimatePresence>
+      {/* Keyed by pathname so each route reliably remounts and fades in on
+          client-side navigation (AnimatePresence mode="wait" left incoming
+          App Router pages stuck invisible until a hard refresh). */}
+      <motion.main
+        key={pathname}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {children}
+      </motion.main>
       <ScrollToTopButton visible={showTop} onClick={scrollToTop} />
       <CustomCursor />
     </div>
