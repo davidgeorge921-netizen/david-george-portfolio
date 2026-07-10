@@ -1,16 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Instagram, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 
 const skills = ["Photography", "Lighting", "Retouching", "Capture One", "Lightroom", "Photoshop", "Color Grading"];
-
-const contactLinks = [
-  { icon: Mail, label: "Email", href: "mailto:davidgeorge921@gmail.com" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/david-bobby-george/" },
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/fireshot.studios/" }
-];
 
 const story = [
   {
@@ -95,31 +88,6 @@ export function AboutStory() {
                 >
                   {skill}
                 </span>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 border-t border-white/10 pt-6 light:border-black/10"
-          >
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-wideTesla text-white/45 light:text-black/45">Contact</p>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {contactLinks.map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  className="flex items-center justify-between gap-4 rounded-full border border-white/25 px-6 py-4 text-sm font-semibold uppercase tracking-wideTesla transition duration-300 hover:border-white hover:bg-white hover:text-black light:border-black/20 light:hover:border-black light:hover:bg-black light:hover:text-white"
-                >
-                  <span className="flex items-center gap-3">
-                    <Icon size={17} />
-                    {label}
-                  </span>
-                  <ArrowUpRight size={16} />
-                </a>
               ))}
             </div>
           </motion.div>
