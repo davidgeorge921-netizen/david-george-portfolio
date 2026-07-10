@@ -4,12 +4,12 @@ import { AboutJourney } from "@/components/about-journey";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The story behind David George — automotive and commercial photographer. A short, visual journey from a first DSLR to brand campaigns in Oman.",
+    "The story behind David George, automotive and commercial photographer. How a Nikon D5100 from his father, years of weddings and events, and a moment that changed everything shaped the way he photographs people today.",
   openGraph: {
     title: "About | David George",
     description:
-      "A short, visual journey from a first DSLR to brand campaigns — how David George works and what he looks for in a frame.",
-    images: ["/images/david-george-portrait.jpg"],
+      "How a first camera, years of real jobs, and a moment that changed everything shaped the way David George photographs people today.",
+    images: ["/images/about/portrait.jpg"],
     type: "profile"
   }
 };
