@@ -355,8 +355,8 @@ export function BusinessPortraits() {
             <ContactForm />
           </Reveal>
           <div className="mt-12 text-center">
-            <Link href="/non-auto-portfolio" className="text-sm font-semibold uppercase tracking-wideTesla text-ink/50 transition hover:text-ink">
-              ← Back to portfolio
+            <Link href="/" className="text-sm font-semibold uppercase tracking-wideTesla text-ink/50 transition hover:text-ink">
+              ← Back to home
             </Link>
           </div>
         </div>
