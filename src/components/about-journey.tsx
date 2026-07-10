@@ -26,9 +26,8 @@ const chapters: Chapter[] = [
     heading: "Where it all started",
     copy: "My father handed me a camera at sixteen. I shot every day after that — mostly to see what the light was doing.",
     media: {
-      placeholder: true,
-      path: "/images/about/beginnings.jpg",
-      note: "Your beginnings photo — young-you at the keyboard, or the family photo"
+      src: "/images/about/beginnings.jpg",
+      alt: "David as a boy practising at the keyboard by a sunlit window"
     },
     maxW: "22rem",
     aspect: "4 / 5"
@@ -39,12 +38,11 @@ const chapters: Chapter[] = [
     heading: "Learning through experience",
     copy: "Weddings, editorials, film sets. I learned on real jobs — the kind where you solve it while the clock keeps running.",
     media: {
-      placeholder: true,
-      path: "/images/about/learning.jpg",
-      note: "On-set BTS — you checking the cinema camera by the lamp"
+      src: "/images/about/learning.jpg",
+      alt: "David checking a frame beside the cinema camera on a film set"
     },
-    maxW: "28rem",
-    aspect: "4 / 3"
+    maxW: "24rem",
+    aspect: "4 / 5"
   },
   {
     index: "03",
@@ -64,11 +62,10 @@ const chapters: Chapter[] = [
     heading: "My approach",
     copy: "I keep a set calm. When the person feels at ease, the honest frames tend to show up on their own.",
     media: {
-      placeholder: true,
-      path: "/images/about/approach.jpg",
-      note: "You working with people — the event shoot"
+      src: "/images/about/approach.jpg",
+      alt: "David photographing guests from the crowd at a live event"
     },
-    maxW: "26rem",
+    maxW: "28rem",
     aspect: "3 / 2"
   },
   {
@@ -132,7 +129,7 @@ export function AboutJourney() {
               className="group relative aspect-[4/5] w-full overflow-hidden bg-black"
             >
               <Image
-                src="/images/david-george-portrait.jpg"
+                src="/images/about/portrait.jpg"
                 alt="David George holding a camera in formal black tie"
                 fill
                 priority
