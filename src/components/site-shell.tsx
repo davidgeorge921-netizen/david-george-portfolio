@@ -42,7 +42,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
   const lenisRef = useRef<Lenis | null>(null);
-  const lastScrollY = useRef(0);
   const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
@@ -77,15 +76,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
       const y = window.scrollY;
       setNavDark(backdropIsLight());
       setShowTop(y > 400);
-      // Auto-hide the header while scrolling down; reveal it when scrolling up or near the top.
-      if (y < 80) {
-        setNavHidden(false);
-      } else if (y > lastScrollY.current + 4) {
-        setNavHidden(true);
-      } else if (y < lastScrollY.current - 4) {
-        setNavHidden(false);
-      }
-      lastScrollY.current = y;
+      // Hide the header whenever the page is scrolled; show it only near the very top,
+      // so it never overlaps the photos while browsing.
+      setNavHidden(y > 80);
     };
     const onScroll = () => {
       if (!ticking) {
