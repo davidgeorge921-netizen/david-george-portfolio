@@ -5,55 +5,83 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
+type Media =
+  | { src: string; alt: string }
+  | { placeholder: true; path: string; note: string };
+
 type Chapter = {
   index: string;
   side: "left" | "right";
   heading: string;
   copy: string;
-  image: string;
-  alt: string;
+  media: Media;
+  maxW: string;
+  aspect: string;
 };
 
 const chapters: Chapter[] = [
   {
     index: "01",
     side: "left",
-    heading: "Where it started",
-    copy: "My father bought me a DSLR at sixteen. I shot every day after that, mostly to see what the light was doing.",
-    image: "/images/people-production/fashion-plaid-full.jpeg",
-    alt: "Early editorial portrait with controlled lighting"
+    heading: "Where it all started",
+    copy: "My father handed me a camera at sixteen. I shot every day after that — mostly to see what the light was doing.",
+    media: {
+      placeholder: true,
+      path: "/images/about/beginnings.jpg",
+      note: "Your beginnings photo — young-you at the keyboard, or the family photo"
+    },
+    maxW: "22rem",
+    aspect: "4 / 5"
   },
   {
     index: "02",
     side: "right",
-    heading: "Finding a style",
-    copy: "Weddings and editorials taught me speed. Cars taught me restraint — how to hold a surface, a reflection, a line.",
-    image: "/images/aston-martin/IMG_3266.jpg",
-    alt: "Aston Martin rolling through a canyon in hard light"
+    heading: "Learning through experience",
+    copy: "Weddings, editorials, film sets. I learned on real jobs — the kind where you solve it while the clock keeps running.",
+    media: {
+      placeholder: true,
+      path: "/images/about/learning.jpg",
+      note: "On-set BTS — you checking the cinema camera by the lamp"
+    },
+    maxW: "28rem",
+    aspect: "4 / 3"
   },
   {
     index: "03",
     side: "left",
     heading: "Working with brands",
-    copy: "In Oman I shot full-time for 3DMax Media — Aston Martin, Ferrari, Haval — alongside agencies and production crews. Launches, motorsport, the usual pressure.",
-    image: "/images/cars/65929DFF-C1D4-4C1F-932B-0BEF615B0F91.jpg",
-    alt: "Black Ferrari beside a reflecting pool"
+    copy: "In Oman I shot campaigns for 3DMax Media — Aston Martin, Ferrari, Haval. Launches, motorsport, deadlines.",
+    media: {
+      src: "/images/aston-martin/IMG_3268.jpg",
+      alt: "Aston Martin on a pre-launch campaign drive through the mountains"
+    },
+    maxW: "32rem",
+    aspect: "16 / 10"
   },
   {
     index: "04",
     side: "right",
-    heading: "On a shoot",
-    copy: "I keep it calm. If the person or the car feels at ease, the light and the framing tend to follow.",
-    image: "/images/people-production/ceo-portrait-01.jpg",
-    alt: "Business portrait shot with soft, controlled light"
+    heading: "My approach",
+    copy: "I keep a set calm. When the person feels at ease, the honest frames tend to show up on their own.",
+    media: {
+      placeholder: true,
+      path: "/images/about/approach.jpg",
+      note: "You working with people — the event shoot"
+    },
+    maxW: "26rem",
+    aspect: "3 / 2"
   },
   {
     index: "05",
     side: "left",
-    heading: "Now",
-    copy: "These days I'm drawn to movement — a car mid-corner, someone mid-thought. The frames I keep are the honest ones.",
-    image: "/images/cars/IMG_7553.jpg",
-    alt: "SUV posed on a desert dune at sunset"
+    heading: "Today",
+    copy: "Now I'm after movement — a car mid-corner, someone mid-thought. The frames I keep are the honest ones.",
+    media: {
+      src: "/images/cars/IMG_7531.jpg",
+      alt: "SUV cutting through desert sand, dust trailing in motion"
+    },
+    maxW: "32rem",
+    aspect: "3 / 2"
   }
 ];
 
@@ -73,14 +101,14 @@ export function AboutJourney() {
 
   return (
     <div className="bg-ink text-bone light:bg-bone light:text-ink">
-      {/* INTRO */}
+      {/* SECTION 1 — ABOUT DAVID */}
       <section className="px-5 pt-28 pb-16 md:px-10 md:pt-40 md:pb-24">
         <div className="mx-auto max-w-[1100px]">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease }}
-            className="text-[11px] font-semibold uppercase tracking-wideTesla text-white/45 light:text-black/45"
+            className="text-[13px] font-semibold uppercase tracking-wideTesla text-white/45 light:text-black/45"
           >
             About
           </motion.p>
@@ -90,10 +118,10 @@ export function AboutJourney() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.08, ease }}
             >
-              <h1 className="text-balance text-[clamp(3rem,8vw,6.5rem)] font-semibold leading-[0.92]">
+              <h1 className="text-balance text-[clamp(3.75rem,9.5vw,8rem)] font-semibold leading-[0.92]">
                 About David
               </h1>
-              <p className="mt-8 max-w-md text-lg leading-8 text-white/70 light:text-black/70">
+              <p className="mt-8 max-w-lg text-xl leading-9 text-white/70 light:text-black/70">
                 I photograph cars and the people around them — most of the job is noticing what everyone else walks past.
               </p>
             </motion.div>
@@ -101,14 +129,14 @@ export function AboutJourney() {
               initial={{ opacity: 0, y: 40, scale: 1.03 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1.1, delay: 0.12, ease }}
-              className="group relative aspect-[4/5] overflow-hidden bg-black md:justify-self-end"
+              className="group relative aspect-[4/5] w-full overflow-hidden bg-black"
             >
               <Image
                 src="/images/david-george-portrait.jpg"
                 alt="David George holding a camera in formal black tie"
                 fill
                 priority
-                sizes="(min-width: 768px) 40vw, 100vw"
+                sizes="(min-width: 768px) 42vw, 100vw"
                 className="object-cover transition duration-700 ease-expo group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/45" />
@@ -117,9 +145,9 @@ export function AboutJourney() {
         </div>
       </section>
 
-      {/* JOURNEY — the flowing line */}
+      {/* SECTIONS 2–6 — the flowing line */}
       <div ref={lineRef} className="px-5 md:px-10">
-        <div className="mx-auto grid max-w-[1100px] grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-y-24 md:grid-cols-[minmax(0,1fr)_6rem_minmax(0,1fr)] md:gap-y-40">
+        <div className="mx-auto grid max-w-[1100px] grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-y-28 md:grid-cols-[minmax(0,1fr)_6rem_minmax(0,1fr)] md:gap-y-48">
           {/* Continuous spine drawn on scroll (spans every chapter row + the terminus) */}
           <div
             className="relative col-start-1 self-stretch md:col-start-2"
@@ -173,26 +201,64 @@ export function AboutJourney() {
           transition={{ duration: 1, ease }}
           className="mx-auto max-w-2xl"
         >
-          <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[0.95]">Still curious?</h2>
-          <p className="mt-6 text-lg leading-8 text-white/68 light:text-black/68">
+          <h2 className="text-[clamp(3rem,7vw,5.5rem)] font-semibold leading-[0.95]">Still curious?</h2>
+          <p className="mt-6 text-xl leading-9 text-white/68 light:text-black/68">
             Let&apos;s make something together.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link
               href="/#work"
-              className="rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wideTesla text-black transition hover:bg-white/85 light:bg-black light:text-white light:hover:bg-black/85"
+              className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold uppercase tracking-wideTesla text-black transition hover:bg-white/85 light:bg-black light:text-white light:hover:bg-black/85"
             >
               View Portfolio
             </Link>
             <Link
               href="/#inquire"
-              className="rounded-full border border-white/25 px-6 py-3 text-xs font-semibold uppercase tracking-wideTesla transition hover:bg-white hover:text-black light:border-black/25 light:hover:bg-black light:hover:text-white"
+              className="rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wideTesla transition hover:bg-white hover:text-black light:border-black/25 light:hover:bg-black light:hover:text-white"
             >
               Start a Project
             </Link>
           </div>
         </motion.div>
       </section>
+    </div>
+  );
+}
+
+function ChapterMedia({ chapter }: { chapter: Chapter }) {
+  const style = { aspectRatio: chapter.aspect, maxWidth: chapter.maxW } as const;
+
+  if ("placeholder" in chapter.media) {
+    return (
+      <div
+        style={style}
+        className="relative w-full overflow-hidden border border-dashed border-current/30"
+      >
+        <div className="absolute inset-0 grid place-items-center p-5 text-center">
+          <div className="max-w-[16rem]">
+            <p className="text-[11px] font-semibold uppercase tracking-wideTesla text-current/45">
+              Add photo
+            </p>
+            <p className="mt-2 text-xs leading-5 text-current/55">{chapter.media.note}</p>
+            <p className="mt-3 break-all text-[10px] uppercase tracking-wideTesla text-current/35">
+              {chapter.media.path}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const { src, alt } = chapter.media;
+  return (
+    <div style={style} className="group relative w-full overflow-hidden bg-black">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(min-width: 768px) 32rem, 100vw"
+        className="object-cover transition duration-700 ease-expo group-hover:scale-105"
+      />
     </div>
   );
 }
@@ -215,7 +281,6 @@ function Branch({ chapter, row }: { chapter: Chapter; row: number }) {
           transition={{ duration: 0.7, ease }}
           className="mx-auto block h-2 w-2 rounded-full bg-current"
         />
-        {/* mobile connector — always reaches right toward the content */}
         <motion.span
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -223,7 +288,6 @@ function Branch({ chapter, row }: { chapter: Chapter; row: number }) {
           transition={{ duration: 0.7, delay: 0.05, ease }}
           className="absolute left-1/2 top-1/2 h-px w-6 origin-left bg-current/30 md:hidden"
         />
-        {/* desktop connector — reaches toward the branch side */}
         <motion.span
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -235,7 +299,7 @@ function Branch({ chapter, row }: { chapter: Chapter; row: number }) {
         />
       </div>
 
-      {/* Chapter content — grows off the branch */}
+      {/* Chapter content — grows off the branch, image fades in after the text */}
       <motion.article
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -248,26 +312,20 @@ function Branch({ chapter, row }: { chapter: Chapter; row: number }) {
             : "md:col-start-3 md:justify-self-start md:text-left"
         }`}
       >
-        <div className={`flex w-full max-w-sm flex-col ${isLeft ? "md:ml-auto md:items-end" : "md:mr-auto md:items-start"}`}>
-          <span className="text-[11px] font-semibold uppercase tracking-wideTesla text-white/35 light:text-black/35">
+        <div className={`flex w-full max-w-md flex-col ${isLeft ? "md:ml-auto md:items-end" : "md:mr-auto md:items-start"}`}>
+          <span className="text-[13px] font-semibold uppercase tracking-wideTesla text-white/35 light:text-black/35">
             Branch {chapter.index}
           </span>
-          <h3 className="mt-3 text-2xl font-semibold leading-tight md:text-3xl">{chapter.heading}</h3>
-          <p className="mt-3 text-sm leading-7 text-white/62 light:text-black/62">{chapter.copy}</p>
+          <h3 className="mt-3 text-3xl font-semibold leading-tight md:text-4xl">{chapter.heading}</h3>
+          <p className="mt-4 text-base leading-8 text-white/62 light:text-black/62 md:text-lg">{chapter.copy}</p>
           <motion.div
-            initial={{ opacity: 0, scale: 1.04 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 24, scale: 1.03 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.1, delay: 0.12, ease }}
-            className="group relative mt-6 aspect-[4/3] w-full max-w-[20rem] overflow-hidden bg-black"
+            transition={{ duration: 1.1, delay: 0.25, ease }}
+            className={`mt-7 w-full ${isLeft ? "md:flex md:justify-end" : ""}`}
           >
-            <Image
-              src={chapter.image}
-              alt={chapter.alt}
-              fill
-              sizes="(min-width: 768px) 20rem, 100vw"
-              className="object-cover transition duration-700 ease-expo group-hover:scale-105"
-            />
+            <ChapterMedia chapter={chapter} />
           </motion.div>
         </div>
       </motion.article>
