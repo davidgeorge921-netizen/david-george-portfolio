@@ -39,15 +39,6 @@ const chapters: Chapter[] = [
   },
   {
     side: "left",
-    heading: "Working with brands",
-    lead: "That grew into real productions and agencies, across a few different countries.",
-    src: "/images/aston-martin/IMG_3268.jpg",
-    alt: "Aston Martin on a pre-launch campaign drive through the mountains",
-    maxW: "38rem",
-    aspect: "16 / 10"
-  },
-  {
-    side: "right",
     heading: "A moment that changed everything",
     lead: "In 2020 I survived a serious car accident on an Indian highway. The car rolled, and all four of us walked away.",
     more: [
@@ -58,6 +49,15 @@ const chapters: Chapter[] = [
     alt: "The car after the accident, resting quietly at the roadside",
     maxW: "35rem",
     aspect: "4 / 3"
+  },
+  {
+    side: "right",
+    heading: "Working with brands",
+    lead: "That grew into real productions and agencies, across a few different countries.",
+    src: "/images/aston-martin/IMG_3268.jpg",
+    alt: "Aston Martin on a pre-launch campaign drive through the mountains",
+    maxW: "38rem",
+    aspect: "16 / 10"
   },
   {
     side: "left",
