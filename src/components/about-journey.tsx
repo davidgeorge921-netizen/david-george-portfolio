@@ -4,85 +4,83 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-
-type Media =
-  | { src: string; alt: string }
-  | { placeholder: true; path: string; note: string };
+import { ReadMore } from "@/components/read-more";
 
 type Chapter = {
-  index: string;
   side: "left" | "right";
   heading: string;
-  copy: string;
-  media: Media;
+  lead: string;
+  more?: string[];
+  src: string;
+  alt: string;
   maxW: string;
   aspect: string;
 };
 
 const chapters: Chapter[] = [
   {
-    index: "01",
     side: "left",
-    heading: "Where it all started",
-    copy: "My father handed me a camera at sixteen. I shot every day after that — mostly to see what the light was doing.",
-    media: {
-      src: "/images/about/beginnings.jpg",
-      alt: "David as a boy practising at the keyboard by a sunlit window"
-    },
+    heading: "How photography began",
+    lead: "My father gave me a Nikon D5100 when I was young. I didn't understand it at the time, but that little camera quietly decided the rest of my life. I carried it everywhere and photographed anything that would sit still long enough.",
+    src: "/images/about/beginnings.jpg",
+    alt: "David as a boy practising at the keyboard by a sunlit window",
     maxW: "22rem",
     aspect: "4 / 5"
   },
   {
-    index: "02",
     side: "right",
     heading: "Learning through experience",
-    copy: "Weddings, editorials, film sets. I learned on real jobs — the kind where you solve it while the clock keeps running.",
-    media: {
-      src: "/images/about/learning.jpg",
-      alt: "David checking a frame beside the cinema camera on a film set"
-    },
+    lead: "I learned by showing up. Church events, families, weddings, live music. Whatever needed a camera, I was there. Over time that grew into commercial work, and I started to understand what it really takes to make a photograph someone keeps.",
+    src: "/images/about/learning.jpg",
+    alt: "David checking a frame beside the cinema camera on a film set",
     maxW: "24rem",
     aspect: "4 / 5"
   },
   {
-    index: "03",
     side: "left",
     heading: "Working with brands",
-    copy: "In Oman I shot campaigns for 3DMax Media — Aston Martin, Ferrari, Haval. Launches, motorsport, deadlines.",
-    media: {
-      src: "/images/aston-martin/IMG_3268.jpg",
-      alt: "Aston Martin on a pre-launch campaign drive through the mountains"
-    },
+    lead: "That path led me onto real productions, into agencies, and across a few different countries. Cars, campaigns, brands. The stakes got higher and the days got longer, and I loved every part of it.",
+    src: "/images/aston-martin/IMG_3268.jpg",
+    alt: "Aston Martin on a pre-launch campaign drive through the mountains",
     maxW: "32rem",
     aspect: "16 / 10"
   },
   {
-    index: "04",
     side: "right",
+    heading: "A moment that changed everything",
+    lead: "In 2020 I was in a serious car accident on a national highway in India. The car rolled several times. For a few seconds I genuinely believed that was the end of my life. Then everything stopped, and I was still there. All four of us walked away.",
+    more: [
+      "I don't share this for drama. It quietly rearranged how I see things. Every ordinary day started to feel like something I had been given rather than something I was owed. My faith in Jesus became the centre of my life after that.",
+      "Mostly, it changed the way I see people. Photography stopped being about making pretty images and became a way to honour someone. A relationship, a celebration, the small moments that usually pass by without anyone noticing."
+    ],
+    src: "/images/about/accident.jpg",
+    alt: "The car after the accident, resting quietly at the roadside",
+    maxW: "28rem",
+    aspect: "4 / 3"
+  },
+  {
+    side: "left",
     heading: "My approach",
-    copy: "I keep a set calm. When the person feels at ease, the honest frames tend to show up on their own.",
-    media: {
-      src: "/images/about/approach.jpg",
-      alt: "David photographing guests from the crowd at a live event"
-    },
+    lead: "Almost nobody feels comfortable in front of a camera, and that is completely normal. My real job is not pressing the shutter. It is making the room feel easy enough that you forget I am there. That is usually when the honest photographs show up.",
+    src: "/images/about/approach.jpg",
+    alt: "David photographing guests from within the crowd at a live event",
     maxW: "28rem",
     aspect: "3 / 2"
   },
   {
-    index: "05",
-    side: "left",
+    side: "right",
     heading: "Today",
-    copy: "Now I'm after movement — a car mid-corner, someone mid-thought. The frames I keep are the honest ones.",
-    media: {
-      src: "/images/cars/IMG_7531.jpg",
-      alt: "SUV cutting through desert sand, dust trailing in motion"
-    },
+    lead: "These days I photograph a bit of everything, from automotive campaigns and commercial work to portraits and celebrations. The assignments change, but the reason never does. People matter. Every photograph deserves care. Every client deserves my best.",
+    more: ["Thank you for taking the time to learn a little about my story. I'd be honoured to help tell yours."],
+    src: "/images/cars/IMG_7531.jpg",
+    alt: "SUV cutting through desert sand, dust trailing in motion",
     maxW: "32rem",
     aspect: "3 / 2"
   }
 ];
 
 const ease = [0.16, 1, 0.3, 1] as const;
+const bodyClass = "text-lg leading-8 text-white/72 light:text-black/72 md:text-xl md:leading-9";
 
 export function AboutJourney() {
   const lineRef = useRef<HTMLDivElement>(null);
@@ -98,7 +96,7 @@ export function AboutJourney() {
 
   return (
     <div className="bg-ink text-bone light:bg-bone light:text-ink">
-      {/* SECTION 1 — ABOUT DAVID */}
+      {/* About David */}
       <section className="px-5 pt-28 pb-16 md:px-10 md:pt-40 md:pb-24">
         <div className="mx-auto max-w-[1100px]">
           <motion.p
@@ -118,8 +116,8 @@ export function AboutJourney() {
               <h1 className="text-balance text-[clamp(3.75rem,9.5vw,8rem)] font-semibold leading-[0.92]">
                 About David
               </h1>
-              <p className="mt-8 max-w-lg text-xl leading-9 text-white/70 light:text-black/70">
-                I photograph cars and the people around them — most of the job is noticing what everyone else walks past.
+              <p className="mt-8 max-w-lg text-xl leading-9 text-white/72 light:text-black/72 md:text-2xl md:leading-10">
+                I&apos;m David, a photographer who cares more about the people in front of the camera than the gear behind it.
               </p>
             </motion.div>
             <motion.div
@@ -142,10 +140,9 @@ export function AboutJourney() {
         </div>
       </section>
 
-      {/* SECTIONS 2–6 — the flowing line */}
+      {/* The flowing line */}
       <div ref={lineRef} className="px-5 md:px-10">
         <div className="mx-auto grid max-w-[1100px] grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-y-28 md:grid-cols-[minmax(0,1fr)_6rem_minmax(0,1fr)] md:gap-y-48">
-          {/* Continuous spine drawn on scroll (spans every chapter row + the terminus) */}
           <div
             className="relative col-start-1 self-stretch md:col-start-2"
             style={{ gridRow: `1 / ${chapters.length + 2}` }}
@@ -169,10 +166,9 @@ export function AboutJourney() {
           </div>
 
           {chapters.map((chapter, i) => (
-            <Branch key={chapter.index} chapter={chapter} row={i + 1} />
+            <Branch key={chapter.heading} chapter={chapter} row={i + 1} />
           ))}
 
-          {/* Terminus — the line resolves to a point */}
           <div
             className="relative col-start-1 flex justify-center md:col-start-2"
             style={{ gridRow: chapters.length + 1 }}
@@ -189,73 +185,29 @@ export function AboutJourney() {
         </div>
       </div>
 
-      {/* ENDING */}
-      <section className="px-5 pb-32 pt-16 text-center md:px-10 md:pb-40 md:pt-24">
+      {/* Quiet closing CTA */}
+      <section className="px-5 pb-32 pt-16 text-center md:px-10 md:pb-40 md:pt-20">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, ease }}
-          className="mx-auto max-w-2xl"
+          className="mx-auto flex max-w-2xl flex-wrap justify-center gap-3"
         >
-          <h2 className="text-[clamp(3rem,7vw,5.5rem)] font-semibold leading-[0.95]">Still curious?</h2>
-          <p className="mt-6 text-xl leading-9 text-white/68 light:text-black/68">
-            Let&apos;s make something together.
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/#work"
-              className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold uppercase tracking-wideTesla text-black transition hover:bg-white/85 light:bg-black light:text-white light:hover:bg-black/85"
-            >
-              View Portfolio
-            </Link>
-            <Link
-              href="/#inquire"
-              className="rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wideTesla transition hover:bg-white hover:text-black light:border-black/25 light:hover:bg-black light:hover:text-white"
-            >
-              Start a Project
-            </Link>
-          </div>
+          <Link
+            href="/#work"
+            className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold uppercase tracking-wideTesla text-black transition hover:bg-white/85 light:bg-black light:text-white light:hover:bg-black/85"
+          >
+            View Portfolio
+          </Link>
+          <Link
+            href="/#inquire"
+            className="rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wideTesla transition hover:bg-white hover:text-black light:border-black/25 light:hover:bg-black light:hover:text-white"
+          >
+            Start a Project
+          </Link>
         </motion.div>
       </section>
-    </div>
-  );
-}
-
-function ChapterMedia({ chapter }: { chapter: Chapter }) {
-  const style = { aspectRatio: chapter.aspect, maxWidth: chapter.maxW } as const;
-
-  if ("placeholder" in chapter.media) {
-    return (
-      <div
-        style={style}
-        className="relative w-full overflow-hidden border border-dashed border-current/30"
-      >
-        <div className="absolute inset-0 grid place-items-center p-5 text-center">
-          <div className="max-w-[16rem]">
-            <p className="text-[11px] font-semibold uppercase tracking-wideTesla text-current/45">
-              Add photo
-            </p>
-            <p className="mt-2 text-xs leading-5 text-current/55">{chapter.media.note}</p>
-            <p className="mt-3 break-all text-[10px] uppercase tracking-wideTesla text-current/35">
-              {chapter.media.path}
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const { src, alt } = chapter.media;
-  return (
-    <div style={style} className="group relative w-full overflow-hidden bg-black">
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="(min-width: 768px) 32rem, 100vw"
-        className="object-cover transition duration-700 ease-expo group-hover:scale-105"
-      />
     </div>
   );
 }
@@ -265,7 +217,6 @@ function Branch({ chapter, row }: { chapter: Chapter; row: number }) {
 
   return (
     <>
-      {/* Node on the spine + branch connector */}
       <div
         className="relative col-start-1 self-center md:col-start-2"
         style={{ gridRow: row }}
@@ -296,7 +247,6 @@ function Branch({ chapter, row }: { chapter: Chapter; row: number }) {
         />
       </div>
 
-      {/* Chapter content — grows off the branch, image fades in after the text */}
       <motion.article
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -310,19 +260,36 @@ function Branch({ chapter, row }: { chapter: Chapter; row: number }) {
         }`}
       >
         <div className={`flex w-full max-w-md flex-col ${isLeft ? "md:ml-auto md:items-end" : "md:mr-auto md:items-start"}`}>
-          <span className="text-[13px] font-semibold uppercase tracking-wideTesla text-white/35 light:text-black/35">
-            Branch {chapter.index}
-          </span>
-          <h3 className="mt-3 text-3xl font-semibold leading-tight md:text-4xl">{chapter.heading}</h3>
-          <p className="mt-4 text-base leading-8 text-white/62 light:text-black/62 md:text-lg">{chapter.copy}</p>
+          <h2 className="text-3xl font-semibold leading-tight md:text-[2.5rem]">{chapter.heading}</h2>
+          <p className={`mt-5 ${bodyClass}`}>{chapter.lead}</p>
+          {chapter.more && (
+            <ReadMore>
+              {chapter.more.map((para, i) => (
+                <p key={i} className={`mt-4 ${bodyClass}`}>
+                  {para}
+                </p>
+              ))}
+            </ReadMore>
+          )}
           <motion.div
             initial={{ opacity: 0, y: 24, scale: 1.03 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1.1, delay: 0.25, ease }}
-            className={`mt-7 w-full ${isLeft ? "md:flex md:justify-end" : ""}`}
+            className={`mt-8 w-full ${isLeft ? "md:flex md:justify-end" : ""}`}
           >
-            <ChapterMedia chapter={chapter} />
+            <div
+              style={{ aspectRatio: chapter.aspect, maxWidth: chapter.maxW }}
+              className="group relative w-full overflow-hidden bg-black"
+            >
+              <Image
+                src={chapter.src}
+                alt={chapter.alt}
+                fill
+                sizes="(min-width: 768px) 32rem, 100vw"
+                className="object-cover transition duration-700 ease-expo group-hover:scale-105"
+              />
+            </div>
           </motion.div>
         </div>
       </motion.article>
