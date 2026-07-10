@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { CheckAvailability } from "@/components/check-availability";
+import { ReadMore } from "@/components/read-more";
 
 const skills = ["Photography", "Lighting", "Retouching", "Capture One", "Lightroom", "Photoshop", "Color Grading"];
 
@@ -67,7 +68,9 @@ export function AboutStory() {
               {story.map((item) => (
                 <article key={item.title} className="border-t border-white/10 pt-5 light:border-black/10">
                   <h3 className="text-xl font-semibold">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-white/62 light:text-black/62">{item.copy}</p>
+                  <ReadMore>
+                    <p className="mt-3 text-sm leading-6 text-white/62 light:text-black/62">{item.copy}</p>
+                  </ReadMore>
                 </article>
               ))}
             </div>

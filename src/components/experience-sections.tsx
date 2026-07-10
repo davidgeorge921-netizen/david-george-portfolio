@@ -3,42 +3,6 @@ import { Reveal } from "@/components/reveal";
 
 const eyebrow = "text-[11px] font-semibold uppercase tracking-wideTesla text-white/45 light:text-black/45";
 const heading = "mt-4 max-w-2xl text-2xl font-semibold leading-tight md:text-4xl";
-const muted = "text-white/62 light:text-black/62";
-
-/* ---------------------------------------------------------------------------
-   SELECTED WORK — understated trust. Real experience, no implied employment.
---------------------------------------------------------------------------- */
-
-const COLLABORATIONS = ["BMW", "Aston Martin", "Ferrari", "Haval", "Red Bull Motorsport"];
-
-export function SelectedWork() {
-  return (
-    <section className="border-t border-white/10 bg-ink px-5 py-24 text-bone light:border-black/10 light:bg-bone light:text-ink md:px-10 md:py-28">
-      <div className="mx-auto max-w-[1800px]">
-        <Reveal>
-          <p className={eyebrow}>Selected Work</p>
-          <h2 className={heading}>Projects &amp; collaborations</h2>
-          <p className={`mt-5 max-w-xl text-sm leading-7 ${muted}`}>
-            A selection of the brands and productions I&apos;ve contributed to across automotive and
-            commercial work.
-          </p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/10 pt-10 sm:grid-cols-3 lg:grid-cols-5 light:border-black/10">
-            {COLLABORATIONS.map((name) => (
-              <span
-                key={name}
-                className="text-sm font-semibold uppercase tracking-wideTesla text-white/70 light:text-black/70"
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
 /* ---------------------------------------------------------------------------
    PROCESS — four quiet steps.

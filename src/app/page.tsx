@@ -5,7 +5,7 @@ import { Reveal } from "@/components/reveal";
 import { AboutStory } from "@/components/about-story";
 import { ReadMore } from "@/components/read-more";
 import { VideoEmbed } from "@/components/video-embed";
-import { SelectedWork, ProcessSection, Pricing } from "@/components/experience-sections";
+import { ProcessSection, Pricing } from "@/components/experience-sections";
 import { Inquiry } from "@/components/inquiry";
 import { GuideDownload } from "@/components/guide-download";
 import { featuredProjects, galleryImages } from "@/lib/portfolio";
@@ -52,7 +52,6 @@ export default function Home() {
       </section>
       <Gallery images={galleryImages} />
       <AboutStory />
-      <SelectedWork />
       <ProcessSection />
       <Pricing />
       <Inquiry />
