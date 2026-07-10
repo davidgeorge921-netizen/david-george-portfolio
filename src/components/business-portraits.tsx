@@ -11,7 +11,7 @@ const base = "/images/non-auto";
 
 /* ----------------------------------------------------------------------------
    NOTE FOR DAVID:
-   • Prices below are PLACEHOLDERS — replace the values in PACKAGES with your
+   • Prices below are PLACEHOLDERS - replace the values in PACKAGES with your
      real rates before promoting the page.
    • The contact form emails you via Web3Forms. Paste a free access key into
      WEB3FORMS_ACCESS_KEY below (get one instantly at https://web3forms.com by
@@ -95,7 +95,7 @@ const FAQS = [
 export function BusinessPortraits() {
   return (
     <div className="bg-bone text-ink">
-      {/* HERO — mobile: image on top, headline below · desktop: text left, image right */}
+      {/* HERO - mobile: image on top, headline below · desktop: text left, image right */}
       <section className="grid grid-cols-1 pt-16 md:min-h-screen md:grid-cols-2 md:gap-x-12 md:pt-0">
         <div className="order-2 flex flex-col justify-center px-6 py-12 md:order-none md:pl-14 md:pr-0 md:py-0">
           <h1 className="text-[2.5rem] font-bold leading-[1.02] tracking-tight md:text-6xl lg:text-7xl">

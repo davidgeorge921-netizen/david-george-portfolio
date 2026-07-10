@@ -10,6 +10,7 @@ type Chapter = {
   side: "left" | "right";
   heading: string;
   lead: string;
+  tail?: string;
   more?: string[];
   src: string;
   alt: string;
@@ -21,60 +22,60 @@ const chapters: Chapter[] = [
   {
     side: "left",
     heading: "How photography began",
-    lead: "My father gave me a Nikon D5100 when I was young. I didn't understand it at the time, but that little camera quietly decided the rest of my life. I carried it everywhere and photographed anything that would sit still long enough.",
-    src: "/images/about/beginnings.jpg",
-    alt: "David as a boy practising at the keyboard by a sunlit window",
-    maxW: "22rem",
-    aspect: "4 / 5"
+    lead: "My father gave me my first Nikon when I was young. I've been photographing everything since.",
+    src: "/images/about/family.jpg",
+    alt: "David as a young child with his family on the coast",
+    maxW: "27rem",
+    aspect: "3 / 4"
   },
   {
     side: "right",
     heading: "Learning through experience",
-    lead: "I learned by showing up. Church events, families, weddings, live music. Whatever needed a camera, I was there. Over time that grew into commercial work, and I started to understand what it really takes to make a photograph someone keeps.",
+    lead: "I learned by showing up. Church events, weddings, live music, and slowly, commercial work.",
     src: "/images/about/learning.jpg",
     alt: "David checking a frame beside the cinema camera on a film set",
-    maxW: "24rem",
+    maxW: "29rem",
     aspect: "4 / 5"
   },
   {
     side: "left",
     heading: "Working with brands",
-    lead: "That path led me onto real productions, into agencies, and across a few different countries. Cars, campaigns, brands. The stakes got higher and the days got longer, and I loved every part of it.",
+    lead: "That grew into real productions and agencies, across a few different countries.",
     src: "/images/aston-martin/IMG_3268.jpg",
     alt: "Aston Martin on a pre-launch campaign drive through the mountains",
-    maxW: "32rem",
+    maxW: "38rem",
     aspect: "16 / 10"
   },
   {
     side: "right",
     heading: "A moment that changed everything",
-    lead: "In 2020 I was in a serious car accident on a national highway in India. The car rolled several times. For a few seconds I genuinely believed that was the end of my life. Then everything stopped, and I was still there. All four of us walked away.",
+    lead: "In 2020 I survived a serious car accident on an Indian highway. The car rolled, and all four of us walked away.",
     more: [
-      "I don't share this for drama. It quietly rearranged how I see things. Every ordinary day started to feel like something I had been given rather than something I was owed. My faith in Jesus became the centre of my life after that.",
-      "Mostly, it changed the way I see people. Photography stopped being about making pretty images and became a way to honour someone. A relationship, a celebration, the small moments that usually pass by without anyone noticing."
+      "It quietly changed how I see things. Every ordinary day started to feel like a gift, and my faith in Jesus became the centre of it.",
+      "Mostly it changed how I see people. Photography became a way to honour someone, a relationship, a celebration, the small moments most of us miss."
     ],
     src: "/images/about/accident.jpg",
     alt: "The car after the accident, resting quietly at the roadside",
-    maxW: "28rem",
+    maxW: "35rem",
     aspect: "4 / 3"
   },
   {
     side: "left",
     heading: "My approach",
-    lead: "Almost nobody feels comfortable in front of a camera, and that is completely normal. My real job is not pressing the shutter. It is making the room feel easy enough that you forget I am there. That is usually when the honest photographs show up.",
+    lead: "Most people feel awkward in front of a camera. My job is to make that feeling disappear.",
     src: "/images/about/approach.jpg",
     alt: "David photographing guests from within the crowd at a live event",
-    maxW: "28rem",
+    maxW: "35rem",
     aspect: "3 / 2"
   },
   {
     side: "right",
     heading: "Today",
-    lead: "These days I photograph a bit of everything, from automotive campaigns and commercial work to portraits and celebrations. The assignments change, but the reason never does. People matter. Every photograph deserves care. Every client deserves my best.",
-    more: ["Thank you for taking the time to learn a little about my story. I'd be honoured to help tell yours."],
+    lead: "These days I photograph everything, from car campaigns to portraits and celebrations.",
+    tail: "Thank you for taking the time to learn a little about me. I'd be honoured to help tell your story.",
     src: "/images/cars/IMG_7531.jpg",
     alt: "SUV cutting through desert sand, dust trailing in motion",
-    maxW: "32rem",
+    maxW: "38rem",
     aspect: "3 / 2"
   }
 ];
@@ -98,7 +99,7 @@ export function AboutJourney() {
     <div className="bg-ink text-bone light:bg-bone light:text-ink">
       {/* About David */}
       <section className="px-5 pt-28 pb-16 md:px-10 md:pt-40 md:pb-24">
-        <div className="mx-auto max-w-[1100px]">
+        <div className="mx-auto max-w-[1240px]">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,7 +108,7 @@ export function AboutJourney() {
           >
             About
           </motion.p>
-          <div className="mt-8 grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-end md:gap-16">
+          <div className="mt-8 grid gap-10 md:grid-cols-[1fr_1fr] md:items-end md:gap-14">
             <motion.div
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
@@ -131,7 +132,7 @@ export function AboutJourney() {
                 alt="David George holding a camera in formal black tie"
                 fill
                 priority
-                sizes="(min-width: 768px) 42vw, 100vw"
+                sizes="(min-width: 768px) 46vw, 100vw"
                 className="object-cover transition duration-700 ease-expo group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/45" />
@@ -142,7 +143,7 @@ export function AboutJourney() {
 
       {/* The flowing line */}
       <div ref={lineRef} className="px-5 md:px-10">
-        <div className="mx-auto grid max-w-[1100px] grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-y-28 md:grid-cols-[minmax(0,1fr)_6rem_minmax(0,1fr)] md:gap-y-48">
+        <div className="mx-auto grid max-w-[1280px] grid-cols-[1.5rem_minmax(0,1fr)] items-center gap-y-16 md:grid-cols-[minmax(0,1fr)_5rem_minmax(0,1fr)] md:gap-y-28">
           <div
             className="relative col-start-1 self-stretch md:col-start-2"
             style={{ gridRow: `1 / ${chapters.length + 2}` }}
@@ -241,7 +242,7 @@ function Branch({ chapter, row }: { chapter: Chapter; row: number }) {
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.7, delay: 0.05, ease }}
-          className={`absolute top-1/2 hidden h-px w-9 bg-current/30 md:block ${
+          className={`absolute top-1/2 hidden h-px w-8 bg-current/30 md:block ${
             isLeft ? "right-1/2 origin-right" : "left-1/2 origin-left"
           }`}
         />
@@ -259,17 +260,20 @@ function Branch({ chapter, row }: { chapter: Chapter; row: number }) {
             : "md:col-start-3 md:justify-self-start md:text-left"
         }`}
       >
-        <div className={`flex w-full max-w-md flex-col ${isLeft ? "md:ml-auto md:items-end" : "md:mr-auto md:items-start"}`}>
-          <h2 className="text-3xl font-semibold leading-tight md:text-[2.5rem]">{chapter.heading}</h2>
-          <p className={`mt-5 ${bodyClass}`}>{chapter.lead}</p>
+        <div className={`flex w-full flex-col ${isLeft ? "md:ml-auto md:items-end" : "md:mr-auto md:items-start"}`}>
+          <h2 className="max-w-xl text-3xl font-semibold leading-tight md:text-[2.5rem]">{chapter.heading}</h2>
+          <p className={`mt-5 max-w-md ${bodyClass}`}>{chapter.lead}</p>
+          {chapter.tail && <p className={`mt-4 max-w-md ${bodyClass}`}>{chapter.tail}</p>}
           {chapter.more && (
-            <ReadMore>
-              {chapter.more.map((para, i) => (
-                <p key={i} className={`mt-4 ${bodyClass}`}>
-                  {para}
-                </p>
-              ))}
-            </ReadMore>
+            <div className="max-w-md">
+              <ReadMore>
+                {chapter.more.map((para, i) => (
+                  <p key={i} className={`mt-4 ${bodyClass}`}>
+                    {para}
+                  </p>
+                ))}
+              </ReadMore>
+            </div>
           )}
           <motion.div
             initial={{ opacity: 0, y: 24, scale: 1.03 }}
@@ -286,7 +290,7 @@ function Branch({ chapter, row }: { chapter: Chapter; row: number }) {
                 src={chapter.src}
                 alt={chapter.alt}
                 fill
-                sizes="(min-width: 768px) 32rem, 100vw"
+                sizes="(min-width: 768px) 38rem, 100vw"
                 className="object-cover transition duration-700 ease-expo group-hover:scale-105"
               />
             </div>

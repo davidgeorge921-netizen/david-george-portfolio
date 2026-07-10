@@ -26,7 +26,7 @@ export function ProjectTiles({ projects }: { projects: Project[] }) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/0 to-black/55 md:from-black/10 md:via-black/30 md:to-black/85" />
 
-                  {/* Desktop — unchanged */}
+                  {/* Desktop - unchanged */}
                   <div className="absolute inset-0 hidden flex-col justify-between p-6 md:flex md:p-8">
                     <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-wideTesla text-white/70">
                       <span>0{index + 1} / Featured Project</span>
@@ -41,7 +41,7 @@ export function ProjectTiles({ projects }: { projects: Project[] }) {
                     </div>
                   </div>
 
-                  {/* Mobile — Open Project top-right, title down bottom-left, category bottom-right */}
+                  {/* Mobile - Open Project top-right, title down bottom-left, category bottom-right */}
                   <div className="absolute inset-0 flex flex-col justify-between p-6 md:hidden">
                     <div className="flex justify-end">
                       <span className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wideTesla text-white/80">

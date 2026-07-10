@@ -38,7 +38,7 @@ export function Inquiry() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
-          subject: "New booking inquiry — David George Photography",
+          subject: "New booking inquiry - David George Photography",
           from_name: "David George Photography website",
           ...Object.fromEntries(fd)
         }),

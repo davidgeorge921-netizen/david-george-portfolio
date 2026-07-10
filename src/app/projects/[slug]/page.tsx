@@ -39,7 +39,7 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <article className="bg-ink text-bone light:bg-bone light:text-ink">
-      {/* MOBILE — full composition preserved (natural aspect, no crop), title below */}
+      {/* MOBILE - full composition preserved (natural aspect, no crop), title below */}
       <section className="md:hidden">
         <Image
           src={project.hero}
@@ -62,7 +62,7 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       </section>
 
-      {/* DESKTOP — unchanged full-bleed cinematic hero */}
+      {/* DESKTOP - unchanged full-bleed cinematic hero */}
       <section className="relative hidden min-h-screen overflow-hidden md:block">
         <Image src={project.hero} alt={`${project.title} hero`} fill priority quality={95} sizes="100vw" className="object-cover object-center" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/90" />

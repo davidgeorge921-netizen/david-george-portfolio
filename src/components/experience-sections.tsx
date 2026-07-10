@@ -5,7 +5,7 @@ const eyebrow = "text-[11px] font-semibold uppercase tracking-wideTesla text-whi
 const heading = "mt-4 max-w-2xl text-2xl font-semibold leading-tight md:text-4xl";
 
 /* ---------------------------------------------------------------------------
-   PROCESS — four quiet steps.
+   PROCESS - four quiet steps.
 --------------------------------------------------------------------------- */
 
 const STEPS = [
@@ -37,7 +37,7 @@ export function ProcessSection() {
 }
 
 /* ---------------------------------------------------------------------------
-   PRICING — expectation-setting only. Prices are PLACEHOLDERS.
+   PRICING - expectation-setting only. Prices are PLACEHOLDERS.
 --------------------------------------------------------------------------- */
 
 const TIERS = [
