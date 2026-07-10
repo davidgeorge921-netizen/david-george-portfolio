@@ -37,10 +37,12 @@ function backdropIsLight(): boolean {
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [navDark, setNavDark] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
   const lenisRef = useRef<Lenis | null>(null);
+  const lastScrollY = useRef(0);
   const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
@@ -72,8 +74,18 @@ export function SiteShell({ children }: { children: ReactNode }) {
     let ticking = false;
     const update = () => {
       ticking = false;
+      const y = window.scrollY;
       setNavDark(backdropIsLight());
-      setShowTop(window.scrollY > 400);
+      setShowTop(y > 400);
+      // Auto-hide the header while scrolling down; reveal it when scrolling up or near the top.
+      if (y < 80) {
+        setNavHidden(false);
+      } else if (y > lastScrollY.current + 4) {
+        setNavHidden(true);
+      } else if (y < lastScrollY.current - 4) {
+        setNavHidden(false);
+      }
+      lastScrollY.current = y;
     };
     const onScroll = () => {
       if (!ticking) {
@@ -96,7 +108,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
         className="fixed left-0 top-0 z-[70] h-px origin-left bg-bone light:bg-ink"
         style={{ scaleX }}
       />
-      <header className="fixed inset-x-0 top-0 z-50">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-transform duration-300 ${
+          navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"
+        }`}
+      >
         <nav
           className={`mx-auto flex h-16 max-w-[1800px] items-center justify-between px-5 text-[11px] font-medium uppercase tracking-wideTesla transition-colors duration-300 md:px-10 ${
             navDark ? "text-black" : "text-white"
