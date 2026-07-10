@@ -30,10 +30,11 @@ export default function Home() {
       <Hero />
       <ProjectTiles projects={featuredProjects} />
       <PortraitStrip
-        id="headshots"
+        id="business-portraits"
         tone="bone"
-        eyebrow="Business Portraits / Studio"
-        title="Headshots"
+        eyebrow="Headshots / Studio"
+        title="Business Portraits"
+        href="/business-portraits"
         aspect="4/5"
         images={headshots}
       />
