@@ -2,7 +2,6 @@ import { Gallery } from "@/components/gallery";
 import { Hero } from "@/components/hero";
 import { ProjectTiles } from "@/components/project-tiles";
 import { Reveal } from "@/components/reveal";
-import { AboutStory } from "@/components/about-story";
 import { ReadMore } from "@/components/read-more";
 import { VideoEmbed } from "@/components/video-embed";
 import { ProcessSection, Pricing } from "@/components/experience-sections";
@@ -51,7 +50,6 @@ export default function Home() {
         </div>
       </section>
       <Gallery images={galleryImages} />
-      <AboutStory />
       <ProcessSection />
       <Pricing />
       <Inquiry />
