@@ -1,3 +1,4 @@
+import { CheckAvailability } from "@/components/check-availability";
 import { getProject, projects } from "@/lib/portfolio";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
@@ -104,6 +105,20 @@ export default async function ProjectPage({ params }: Props) {
           })}
         </div>
       </section>
+      {/* Closing invitation */}
+      <section className="border-t border-white/10 px-5 py-28 text-center light:border-black/10 md:px-10 md:py-36">
+        <div className="mx-auto max-w-2xl">
+          <p className="text-2xl font-light leading-snug md:text-4xl">
+            Love this style?
+            <br />
+            Let&apos;s create something together.
+          </p>
+          <div className="mt-10 flex justify-center">
+            <CheckAvailability href="/#inquire" />
+          </div>
+        </div>
+      </section>
+
       <section className="border-t border-white/10 px-5 py-16 light:border-black/10 md:px-10">
         <div className="mx-auto flex max-w-[1800px] flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>

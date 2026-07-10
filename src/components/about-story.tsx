@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { CheckAvailability } from "@/components/check-availability";
 
 const skills = ["Photography", "Lighting", "Retouching", "Capture One", "Lightroom", "Photoshop", "Color Grading"];
 
@@ -90,6 +91,16 @@ export function AboutStory() {
                 </span>
               ))}
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-10"
+          >
+            <CheckAvailability />
           </motion.div>
         </div>
       </div>
