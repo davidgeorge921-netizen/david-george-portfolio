@@ -17,7 +17,6 @@ const base = "/images/non-auto";
      WEB3FORMS_ACCESS_KEY below (get one instantly at https://web3forms.com by
      entering davidgeorge921@gmail.com). Until a key is set, the form falls back
      to opening the visitor's email app pre-filled.
-   • Testimonials are a template — replace with real client quotes or delete.
 ---------------------------------------------------------------------------- */
 
 const CONTACT_EMAIL = "davidgeorge921@gmail.com";
@@ -91,11 +90,6 @@ const FAQS = [
   { q: "How many images do I receive?", a: "You receive the retouched selects listed in each package. Additional final images can always be added afterwards." },
   { q: "How soon are the photos delivered?", a: "A gallery of proofs follows within a few days; final retouched images are typically delivered within one week." },
   { q: "Can you photograph a whole team?", a: "Yes, the Team / On-Location package delivers matched individual headshots plus group options, all consistent in style and colour." }
-];
-
-const TESTIMONIALS = [
-  { quote: "Add a short client testimonial here.", name: "Client name", role: "Title, Company" },
-  { quote: "Add a second client testimonial here.", name: "Client name", role: "Title, Company" }
 ];
 
 export function BusinessPortraits() {
@@ -295,26 +289,6 @@ export function BusinessPortraits() {
                   <h3 className="mt-3 text-lg font-medium">{s.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink/60">{s.copy}</p>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS (template — replace with real quotes) */}
-      <section className="border-t border-ink/10 px-6 py-20 md:px-14 md:py-28">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
-            {TESTIMONIALS.map((t, i) => (
-              <Reveal key={i}>
-                <figure>
-                  <blockquote className="text-xl font-light leading-relaxed md:text-2xl">
-                    “{t.quote}”
-                  </blockquote>
-                  <figcaption className="mt-5 text-sm text-ink/50">
-                    <span className="font-medium text-ink">{t.name}</span>, {t.role}
-                  </figcaption>
-                </figure>
               </Reveal>
             ))}
           </div>
