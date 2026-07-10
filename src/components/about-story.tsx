@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Download, Instagram, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Instagram, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 
 const skills = ["Photography", "Lighting", "Retouching", "Capture One", "Lightroom", "Photoshop", "Color Grading"];
@@ -9,8 +9,7 @@ const skills = ["Photography", "Lighting", "Retouching", "Capture One", "Lightro
 const contactLinks = [
   { icon: Mail, label: "Email", href: "mailto:davidgeorge921@gmail.com" },
   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/david-bobby-george/" },
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/fireshot.studios/" },
-  { icon: Download, label: "Resume", href: "/David_George_Resume.pdf" }
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/fireshot.studios/" }
 ];
 
 const story = [

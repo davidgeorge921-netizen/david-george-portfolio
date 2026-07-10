@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
+import { SiteFooter } from "@/components/site-footer";
 
 function parseRgb(value: string): [number, number, number, number] | null {
   const match = value.match(/rgba?\(([^)]+)\)/);
@@ -152,6 +153,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       >
         {children}
       </motion.main>
+      <SiteFooter />
       <ScrollToTopButton visible={showTop} onClick={scrollToTop} />
       <CustomCursor />
     </div>
